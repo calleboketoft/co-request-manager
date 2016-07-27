@@ -9,13 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var co_browser_storage_1 = require('co-browser-storage/co-browser-storage');
+var co_request_form_1 = require('co-request-form/co-request-form');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n    <h1>Angular 2</h1>\n  "
+            directives: [co_browser_storage_1.CbsComponent, co_request_form_1.CoRequestFormComponent],
+            template: "\n    <div class=\"container\">\n      <h1>Angular 2</h1>\n      <co-request-form-cmp\n        [url]=\"'http://someurl'\"\n        [method]=\"'GET'\"\n        [body]=\"'{}'\"\n        [headers]=\"preconfiguredHeaders\"\n        (request)=\"makeRequest($event)\">\n      </co-request-form-cmp>\n      <cbs-cmp></cbs-cmp>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
