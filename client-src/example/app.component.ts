@@ -1,6 +1,5 @@
 import {Component, ViewChild} from '@angular/core'
-import {FormBuilder, REACTIVE_FORM_DIRECTIVES} from '@angular/forms'
-import {CbsComponent} from 'co-browser-storage/co-browser-storage'
+import {FormBuilder, REACTIVE_FORM_DIRECTIVES, Validators} from '@angular/forms'
 import {CoRequestFormComponent} from 'co-request-form/co-request-form'
 import {ManageRequestsComponent} from './manage-requests.component'
 import {RequestManagerService} from './request-manager.service'
@@ -9,7 +8,6 @@ import {BehaviorSubject} from 'rxjs/Rx'
 @Component({
   selector: 'app',
   directives: [
-    CbsComponent,
     CoRequestFormComponent,
     ManageRequestsComponent,
     REACTIVE_FORM_DIRECTIVES
@@ -28,11 +26,19 @@ import {BehaviorSubject} from 'rxjs/Rx'
             <div class="row">
               <div class="col-xs-4">
                 <input type="text" class="form-control"
-                  formControlName="newRequestName">
+                  formControlName="newRequestName"
+                  placeholder="Name">
+                <small [hidden]="fc.newRequestName.valid || fc.newRequestName.pristine">
+                  Required field
+                </small>
               </div>
               <div class="col-xs-4">
                 <input type="text" class="form-control"
-                  formControlName="newRequestGroup">
+                  formControlName="newRequestGroup"
+                  placeholder="Group">
+                <small [hidden]="fc.newRequestGroup.valid || fc.newRequestGroup.pristine">
+                  Required field
+                </small>
               </div>
               <div class="col-xs-4">
                 <button type="button" class="btn btn-primary"
@@ -50,15 +56,6 @@ import {BehaviorSubject} from 'rxjs/Rx'
             [body]="(currentRequest$ | async).body"
             [headers]="(currentRequest$ | async).headers">
           </co-request-form-cmp>
-          <button type="button" class="btn btn-primary"
-            (click)="makeRequest()">
-            Get values
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <cbs-cmp></cbs-cmp>
         </div>
       </div>
     </div>
@@ -68,13 +65,14 @@ export class AppComponent {
   @ViewChild(CoRequestFormComponent) coRequestFormComponent: CoRequestFormComponent;
 
   public currentRequest$ = new BehaviorSubject({
-    url: '',
+    url: '/api',
     method: 'GET',
     body: '{}',
     headers: {}
   });
 
   public saveRequestForm;
+  public fc;
 
   constructor (
     private requestManagerService: RequestManagerService,
@@ -83,22 +81,22 @@ export class AppComponent {
 
   ngOnInit () {
     this.saveRequestForm = this.formBuilder.group({
-      newRequestName: [''],
-      newRequestGroup: ['']
+      newRequestName: ['', Validators.required],
+      newRequestGroup: ['', Validators.required]
     })
+    this.fc = this.saveRequestForm.controls
   }
 
   public selectedRequest ($event) {
     this.currentRequest$.next($event)
-    this.coRequestFormComponent.initializeForm()
-  }
-
-  public makeRequest () {
-    console.log(this.coRequestFormComponent.request())
   }
 
   public saveNewRequest () {
-    // TODO validate that form is good
+    if (!this.saveRequestForm.valid) {
+      alert('name or group is missing')
+      return
+    }
+
     let requestData = this.coRequestFormComponent.request()
     let newRequestNameControl = this.saveRequestForm.controls.newRequestName
     let newRequestGroupControl = this.saveRequestForm.controls.newRequestGroup
