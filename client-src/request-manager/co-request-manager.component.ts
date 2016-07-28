@@ -2,7 +2,7 @@ import {Component, ViewChild} from '@angular/core'
 import {FormBuilder, REACTIVE_FORM_DIRECTIVES, Validators} from '@angular/forms'
 import {CoRequestFormComponent} from 'co-request-form/co-request-form'
 import {ManageRequestsComponent} from './manage-saved-requests.component'
-import {RequestManagerService} from './request-manager.service'
+import {CoRequestManagerService} from './co-request-manager.service'
 import {BehaviorSubject} from 'rxjs/Rx'
 
 @Component({
@@ -12,7 +12,7 @@ import {BehaviorSubject} from 'rxjs/Rx'
     ManageRequestsComponent,
     REACTIVE_FORM_DIRECTIVES
   ],
-  providers: [RequestManagerService],
+  providers: [CoRequestManagerService],
   template: `
     <div class="container">
       <div class="row">
@@ -75,7 +75,7 @@ export class CoRequestManagerComponent {
   public fc;
 
   constructor (
-    private requestManagerService: RequestManagerService,
+    private requestManagerService: CoRequestManagerService,
     private formBuilder: FormBuilder
   ) {}
 

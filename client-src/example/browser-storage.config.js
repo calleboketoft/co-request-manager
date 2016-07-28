@@ -5,7 +5,6 @@ exports.REQUEST_MANAGER_CONFIG = 'requestManagerConfig';
 exports.browserStorageConfig = {
     namespace: exports.NAMESPACE,
     initialState: [
-        // List storage variables here
         {
             key: exports.REQUEST_MANAGER_CONFIG,
             value: '{"requests": []}',

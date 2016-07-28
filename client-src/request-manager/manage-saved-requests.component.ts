@@ -1,7 +1,7 @@
 import {Component, Output, EventEmitter} from '@angular/core'
 import {CoListViewTableComponent} from 'co-list-view-table/co-list-view-table'
 import {CbsModel} from 'co-browser-storage/co-browser-storage'
-import {REQUEST_MANAGER_CONFIG} from '../example/browser-storage.config'
+import {CoRequestManagerConfig} from './co-request-manager.config'
 
 @Component({
   selector: 'manage-requests',
@@ -16,7 +16,10 @@ import {REQUEST_MANAGER_CONFIG} from '../example/browser-storage.config'
 })
 export class ManageRequestsComponent {
   @Output() selectedRequest = new EventEmitter();
-  constructor (private cbsModel: CbsModel) {}
+  constructor (
+    private cbsModel: CbsModel,
+    private coRequestManagerConfig: CoRequestManagerConfig
+  ) {}
 
   public tableConfig = {
     columnDefs: [
@@ -31,6 +34,7 @@ export class ManageRequestsComponent {
     ]
   }
 
-  public requestManagerConfig$ = this.cbsModel.getItemByKey(REQUEST_MANAGER_CONFIG)
+  public requestManagerConfig$ = this.cbsModel
+    .getItemByKey(this.coRequestManagerConfig.browserStorageKey)
     .map(config => JSON.parse(config.value))
 }

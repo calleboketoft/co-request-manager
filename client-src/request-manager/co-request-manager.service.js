@@ -10,13 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var co_browser_storage_1 = require('co-browser-storage/co-browser-storage');
-var browser_storage_config_1 = require('../example/browser-storage.config');
+var co_request_manager_config_1 = require('./co-request-manager.config');
 require('rxjs/add/operator/take');
-var RequestManagerService = (function () {
-    function RequestManagerService(cbsModel) {
+var CoRequestManagerService = (function () {
+    function CoRequestManagerService(cbsModel, coRequestManagerConfig) {
         this.cbsModel = cbsModel;
+        this.coRequestManagerConfig = coRequestManagerConfig;
     }
-    RequestManagerService.prototype.saveNewRequest = function (_a) {
+    CoRequestManagerService.prototype.saveNewRequest = function (_a) {
         var _this = this;
         var name = _a.name, method = _a.method, url = _a.url, body = _a.body, tags = _a.tags, headers = _a.headers;
         var newItem = {
@@ -28,19 +29,19 @@ var RequestManagerService = (function () {
             body: body,
             tags: tags
         };
-        this.cbsModel.getItemByKey(browser_storage_config_1.REQUEST_MANAGER_CONFIG)
+        this.cbsModel.getItemByKey(this.coRequestManagerConfig.browserStorageKey)
             .take(1).subscribe(function (config) {
             var existingConfig = JSON.parse(config.value);
             existingConfig.requests.push(newItem);
             _this.cbsModel.updateItem({
-                key: browser_storage_config_1.REQUEST_MANAGER_CONFIG,
+                key: _this.coRequestManagerConfig.browserStorageKey,
                 value: JSON.stringify(existingConfig)
             });
         });
     };
     // Generate UUID
     // http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-    RequestManagerService.prototype.generateUUID = function () {
+    CoRequestManagerService.prototype.generateUUID = function () {
         var d = new Date().getTime();
         if (window.performance && typeof window.performance.now === 'function') {
             d += performance.now(); //use high-precision timer if available
@@ -52,11 +53,11 @@ var RequestManagerService = (function () {
         });
         return uuid;
     };
-    RequestManagerService = __decorate([
+    CoRequestManagerService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel])
-    ], RequestManagerService);
-    return RequestManagerService;
+        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, co_request_manager_config_1.CoRequestManagerConfig])
+    ], CoRequestManagerService);
+    return CoRequestManagerService;
 }());
-exports.RequestManagerService = RequestManagerService;
-//# sourceMappingURL=request-manager.service.js.map
+exports.CoRequestManagerService = CoRequestManagerService;
+//# sourceMappingURL=co-request-manager.service.js.map

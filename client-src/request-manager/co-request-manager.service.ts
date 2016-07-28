@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core'
 import {CbsModel} from 'co-browser-storage/co-browser-storage'
-import {REQUEST_MANAGER_CONFIG} from '../example/browser-storage.config'
+import {CoRequestManagerConfig} from './co-request-manager.config'
 import 'rxjs/add/operator/take'
 
 @Injectable()
-export class RequestManagerService {
-  constructor (private cbsModel: CbsModel) {}
+export class CoRequestManagerService {
+  constructor (
+    private cbsModel: CbsModel,
+    private coRequestManagerConfig: CoRequestManagerConfig
+  ) {}
 
   public saveNewRequest ({name, method, url, body, tags, headers}) {
     let newItem = {
@@ -17,12 +20,12 @@ export class RequestManagerService {
       body,
       tags
     }
-    this.cbsModel.getItemByKey(REQUEST_MANAGER_CONFIG)
+    this.cbsModel.getItemByKey(this.coRequestManagerConfig.browserStorageKey)
       .take(1).subscribe(config => {
         let existingConfig = JSON.parse(config.value)
         existingConfig.requests.push(newItem)
         this.cbsModel.updateItem({
-          key: REQUEST_MANAGER_CONFIG,
+          key: this.coRequestManagerConfig.browserStorageKey,
           value: JSON.stringify(existingConfig)
         })
       })
