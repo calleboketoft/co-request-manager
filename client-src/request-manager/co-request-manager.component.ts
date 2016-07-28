@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core'
+import {Component, ViewChild, Input} from '@angular/core'
 import {FormBuilder, REACTIVE_FORM_DIRECTIVES, Validators} from '@angular/forms'
 import {CoRequestFormComponent} from 'co-request-form/co-request-form'
 import {ManageRequestsComponent} from './manage-saved-requests.component'
@@ -17,11 +17,22 @@ import {BehaviorSubject} from 'rxjs/Rx'
     <div class="container">
       <div class="row">
         <div class="col-xs-6">
+          <h4>Saved requests</h4>
           <manage-requests
             (selectedRequest)="selectedRequest($event)">
           </manage-requests>
           <br>
-
+        </div>
+        <div class="col-xs-6">
+          <h4>REST Client</h4>
+          <co-request-form-cmp
+            [url]="(currentRequest$ | async).url"
+            [method]="(currentRequest$ | async).method"
+            [body]="(currentRequest$ | async).body"
+            [headers]="(currentRequest$ | async).headers">
+          </co-request-form-cmp>
+          <br>
+          <hr>
           <form [formGroup]="saveRequestForm">
             <div class="row">
               <div class="col-xs-4">
@@ -47,28 +58,32 @@ import {BehaviorSubject} from 'rxjs/Rx'
                 </button>
               </div>
             </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <small class="text-muted">
+                  Save currently entered values as a new request
+                </small>
+              </div>
+            </div>
           </form>
-        </div>
-        <div class="col-xs-6">
-          <co-request-form-cmp
-            [url]="(currentRequest$ | async).url"
-            [method]="(currentRequest$ | async).method"
-            [body]="(currentRequest$ | async).body"
-            [headers]="(currentRequest$ | async).headers">
-          </co-request-form-cmp>
+          <br>
         </div>
       </div>
     </div>
   `
 })
 export class CoRequestManagerComponent {
+  @Input() url;
+  @Input() method;
+  @Input() body;
+  @Input() headers;
   @ViewChild(CoRequestFormComponent) coRequestFormComponent: CoRequestFormComponent;
 
   public currentRequest$ = new BehaviorSubject({
-    url: '/api',
-    method: 'GET',
-    body: '{}',
-    headers: {}
+    url: this.url || '',
+    method: this.method || 'GET',
+    body: this.body || '{}',
+    headers: this.headers || {}
   });
 
   public saveRequestForm;

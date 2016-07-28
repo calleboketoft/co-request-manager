@@ -19,10 +19,10 @@ var CoRequestManagerComponent = (function () {
         this.requestManagerService = requestManagerService;
         this.formBuilder = formBuilder;
         this.currentRequest$ = new Rx_1.BehaviorSubject({
-            url: '/api',
-            method: 'GET',
-            body: '{}',
-            headers: {}
+            url: this.url || '',
+            method: this.method || 'GET',
+            body: this.body || '{}',
+            headers: this.headers || {}
         });
     }
     CoRequestManagerComponent.prototype.ngOnInit = function () {
@@ -51,6 +51,22 @@ var CoRequestManagerComponent = (function () {
         newRequestNameControl.updateValue('');
     };
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CoRequestManagerComponent.prototype, "url", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CoRequestManagerComponent.prototype, "method", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CoRequestManagerComponent.prototype, "body", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CoRequestManagerComponent.prototype, "headers", void 0);
+    __decorate([
         core_1.ViewChild(co_request_form_1.CoRequestFormComponent), 
         __metadata('design:type', co_request_form_1.CoRequestFormComponent)
     ], CoRequestManagerComponent.prototype, "coRequestFormComponent", void 0);
@@ -63,7 +79,7 @@ var CoRequestManagerComponent = (function () {
                 forms_1.REACTIVE_FORM_DIRECTIVES
             ],
             providers: [co_request_manager_service_1.CoRequestManagerService],
-            template: "\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-6\">\n          <manage-requests\n            (selectedRequest)=\"selectedRequest($event)\">\n          </manage-requests>\n          <br>\n\n          <form [formGroup]=\"saveRequestForm\">\n            <div class=\"row\">\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestName\"\n                  placeholder=\"Name\">\n                <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestGroup\"\n                  placeholder=\"Group\">\n                <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <button type=\"button\" class=\"btn btn-primary\"\n                  (click)=\"saveNewRequest()\">\n                  Save request\n                </button>\n              </div>\n            </div>\n          </form>\n        </div>\n        <div class=\"col-xs-6\">\n          <co-request-form-cmp\n            [url]=\"(currentRequest$ | async).url\"\n            [method]=\"(currentRequest$ | async).method\"\n            [body]=\"(currentRequest$ | async).body\"\n            [headers]=\"(currentRequest$ | async).headers\">\n          </co-request-form-cmp>\n        </div>\n      </div>\n    </div>\n  "
+            template: "\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-6\">\n          <h4>Saved requests</h4>\n          <manage-requests\n            (selectedRequest)=\"selectedRequest($event)\">\n          </manage-requests>\n          <br>\n        </div>\n        <div class=\"col-xs-6\">\n          <h4>REST Client</h4>\n          <co-request-form-cmp\n            [url]=\"(currentRequest$ | async).url\"\n            [method]=\"(currentRequest$ | async).method\"\n            [body]=\"(currentRequest$ | async).body\"\n            [headers]=\"(currentRequest$ | async).headers\">\n          </co-request-form-cmp>\n          <br>\n          <hr>\n          <form [formGroup]=\"saveRequestForm\">\n            <div class=\"row\">\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestName\"\n                  placeholder=\"Name\">\n                <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestGroup\"\n                  placeholder=\"Group\">\n                <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <button type=\"button\" class=\"btn btn-primary\"\n                  (click)=\"saveNewRequest()\">\n                  Save request\n                </button>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-xs-12\">\n                <small class=\"text-muted\">\n                  Save currently entered values as a new request\n                </small>\n              </div>\n            </div>\n          </form>\n          <br>\n        </div>\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [co_request_manager_service_1.CoRequestManagerService, forms_1.FormBuilder])
     ], CoRequestManagerComponent);
