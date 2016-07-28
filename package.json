@@ -1,8 +1,8 @@
 {
   "name": "co-request-manager",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Angular 2 - Request manager component",
+  "main": "co-request-manager.js",
   "scripts": {
     "start": "node server",
     "build": "npm run typescript",
@@ -16,13 +16,20 @@
     "type": "git",
     "url": "git+https://github.com/calleboketoft/co-request-manager.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["angular2"],
+  "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/calleboketoft/co-request-manager/issues"
   },
   "homepage": "https://github.com/calleboketoft/co-request-manager#readme",
+  "peerDependencies": {
+    "@angular/core": "2.0.0-rc.4",
+    "@ngrx/store": "2.0.1",
+    "co-browser-storage": "1.0.0",
+    "co-list-view-table": "0.2.8",
+    "co-request-form": "2.0.3"
+  },
   "devDependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
@@ -31,7 +38,6 @@
     "@angular/platform-browser": "2.0.0-rc.4",
     "@angular/platform-browser-dynamic": "2.0.0-rc.4",
     "@ngrx/core": "1.0.1",
-    "@ngrx/effects": "1.0.1",
     "@ngrx/store": "2.0.1",
     "bootstrap": "git+https://git@github.com/twbs/bootstrap.git#v4-dev",
     "co-browser-storage": "1.0.0",
