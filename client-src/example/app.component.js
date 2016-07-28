@@ -14,11 +14,21 @@ var co_request_form_1 = require('co-request-form/co-request-form');
 var AppComponent = (function () {
     function AppComponent() {
     }
+    AppComponent.prototype.makeRequest = function () {
+        console.log(this.coRequestFormComponent.request());
+    };
+    __decorate([
+        core_1.ViewChild(co_request_form_1.CoRequestFormComponent), 
+        __metadata('design:type', co_request_form_1.CoRequestFormComponent)
+    ], AppComponent.prototype, "coRequestFormComponent", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            directives: [co_browser_storage_1.CbsComponent, co_request_form_1.CoRequestFormComponent],
-            template: "\n    <div class=\"container\">\n      <h1>Angular 2</h1>\n      <co-request-form-cmp\n        [url]=\"'http://someurl'\"\n        [method]=\"'GET'\"\n        [body]=\"'{}'\"\n        [headers]=\"preconfiguredHeaders\"\n        (request)=\"makeRequest($event)\">\n      </co-request-form-cmp>\n      <cbs-cmp></cbs-cmp>\n    </div>\n  "
+            directives: [
+                co_browser_storage_1.CbsComponent,
+                co_request_form_1.CoRequestFormComponent
+            ],
+            template: "\n    <div class=\"container\">\n      <h1>Angular 2</h1>\n      <div class=\"row\">\n        <div class=\"col-xs-6\">\n          <co-request-form-cmp\n            [url]=\"'http://someurl'\"\n            [method]=\"'GET'\"\n            [body]=\"'{}'\"\n            [headers]=\"\">\n          </co-request-form-cmp>\n          <button type=\"button\" class=\"btn btn-primary\"\n            (click)=\"makeRequest()\">\n            Get values\n          </button>\n        </div>\n        <div class=\"col-xs-6\">\n          <cbs-cmp></cbs-cmp>\n        </div>\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
