@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {Component, Output, EventEmitter} from '@angular/core'
 import {CoListViewTableComponent} from 'co-list-view-table/co-list-view-table'
 import {CbsModel} from 'co-browser-storage/co-browser-storage'
 import {REQUEST_MANAGER_CONFIG} from './browser-storage.config'
@@ -10,11 +10,12 @@ import {REQUEST_MANAGER_CONFIG} from './browser-storage.config'
     <co-list-view-table-cmp
       [tableConfig]="tableConfig"
       [tableData]="(requestManagerConfig$ | async)?.requests"
-      (selected)="selectedRequest($event)">
+      (selected)="selectedRequest.emit($event)">
     </co-list-view-table-cmp>
   `
 })
 export class ManageRequestsComponent {
+  @Output() selectedRequest = new EventEmitter();
   constructor (private cbsModel: CbsModel) {}
 
   public tableConfig = {
@@ -31,11 +32,5 @@ export class ManageRequestsComponent {
   }
 
   public requestManagerConfig$ = this.cbsModel.getItemByKey(REQUEST_MANAGER_CONFIG)
-    .map(config => {
-      return JSON.parse(config.value)
-    })
-
-  public selectedRequest ($event) {
-    console.log($event)
-  }
+    .map(config => JSON.parse(config.value))
 }

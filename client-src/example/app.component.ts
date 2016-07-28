@@ -4,6 +4,7 @@ import {CbsComponent} from 'co-browser-storage/co-browser-storage'
 import {CoRequestFormComponent} from 'co-request-form/co-request-form'
 import {ManageRequestsComponent} from './manage-requests.component'
 import {RequestManagerService} from './request-manager.service'
+import {BehaviorSubject} from 'rxjs/Rx'
 
 @Component({
   selector: 'app',
@@ -18,7 +19,10 @@ import {RequestManagerService} from './request-manager.service'
       <h1>Angular 2</h1>
       <div class="row">
         <div class="col-xs-6">
-          <manage-requests></manage-requests><br>
+          <manage-requests
+            (selectedRequest)="selectedRequest($event)">
+          </manage-requests>
+          <br>
 
           <form [formGroup]="saveRequestForm">
             <div class="row">
@@ -41,10 +45,10 @@ import {RequestManagerService} from './request-manager.service'
         </div>
         <div class="col-xs-6">
           <co-request-form-cmp
-            [url]="'http://someurl'"
-            [method]="'GET'"
-            [body]="'{}'"
-            [headers]="">
+            [url]="(currentRequest$ | async).url"
+            [method]="(currentRequest$ | async).method"
+            [body]="(currentRequest$ | async).body"
+            [headers]="(currentRequest$ | async).headers">
           </co-request-form-cmp>
           <button type="button" class="btn btn-primary"
             (click)="makeRequest()">
@@ -63,6 +67,13 @@ import {RequestManagerService} from './request-manager.service'
 export class AppComponent {
   @ViewChild(CoRequestFormComponent) coRequestFormComponent: CoRequestFormComponent;
 
+  public currentRequest$ = new BehaviorSubject({
+    url: '',
+    method: 'GET',
+    body: '{}',
+    headers: {}
+  });
+
   public saveRequestForm;
 
   constructor (
@@ -75,6 +86,11 @@ export class AppComponent {
       newRequestName: [''],
       newRequestGroup: ['']
     })
+  }
+
+  public selectedRequest ($event) {
+    this.currentRequest$.next($event)
+    this.coRequestFormComponent.initializeForm()
   }
 
   public makeRequest () {
@@ -91,5 +107,8 @@ export class AppComponent {
       name: newRequestNameControl.value,
       tags: [newRequestGroupControl.value]
     }))
+
+    newRequestGroupControl.updateValue('')
+    newRequestNameControl.updateValue('')
   }
 }

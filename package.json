@@ -36,7 +36,7 @@
     "bootstrap": "git+https://git@github.com/twbs/bootstrap.git#v4-dev",
     "co-browser-storage": "^1.0.0",
     "co-list-view-table": "^0.2.8",
-    "co-request-form": "^2.0.0",
+    "co-request-form": "^2.0.1",
     "es6-shim": "^0.35.1",
     "express": "^4.14.0",
     "reflect-metadata": "^0.1.3",

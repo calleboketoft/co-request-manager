@@ -15,6 +15,7 @@ var browser_storage_config_1 = require('./browser-storage.config');
 var ManageRequestsComponent = (function () {
     function ManageRequestsComponent(cbsModel) {
         this.cbsModel = cbsModel;
+        this.selectedRequest = new core_1.EventEmitter();
         this.tableConfig = {
             columnDefs: [
                 {
@@ -28,18 +29,17 @@ var ManageRequestsComponent = (function () {
             ]
         };
         this.requestManagerConfig$ = this.cbsModel.getItemByKey(browser_storage_config_1.REQUEST_MANAGER_CONFIG)
-            .map(function (config) {
-            return JSON.parse(config.value);
-        });
+            .map(function (config) { return JSON.parse(config.value); });
     }
-    ManageRequestsComponent.prototype.selectedRequest = function ($event) {
-        console.log($event);
-    };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], ManageRequestsComponent.prototype, "selectedRequest", void 0);
     ManageRequestsComponent = __decorate([
         core_1.Component({
             selector: 'manage-requests',
             directives: [co_list_view_table_1.CoListViewTableComponent],
-            template: "\n    <co-list-view-table-cmp\n      [tableConfig]=\"tableConfig\"\n      [tableData]=\"(requestManagerConfig$ | async)?.requests\"\n      (selected)=\"selectedRequest($event)\">\n    </co-list-view-table-cmp>\n  "
+            template: "\n    <co-list-view-table-cmp\n      [tableConfig]=\"tableConfig\"\n      [tableData]=\"(requestManagerConfig$ | async)?.requests\"\n      (selected)=\"selectedRequest.emit($event)\">\n    </co-list-view-table-cmp>\n  "
         }), 
         __metadata('design:paramtypes', [co_browser_storage_1.CbsModel])
     ], ManageRequestsComponent);
