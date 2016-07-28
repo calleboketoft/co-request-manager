@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var co_request_form_1 = require('co-request-form/co-request-form');
-var manage_requests_component_1 = require('./manage-requests.component');
+var manage_saved_requests_component_1 = require('./manage-saved-requests.component');
 var request_manager_service_1 = require('./request-manager.service');
 var Rx_1 = require('rxjs/Rx');
-var AppComponent = (function () {
-    function AppComponent(requestManagerService, formBuilder) {
+var CoRequestManagerComponent = (function () {
+    function CoRequestManagerComponent(requestManagerService, formBuilder) {
         this.requestManagerService = requestManagerService;
         this.formBuilder = formBuilder;
         this.currentRequest$ = new Rx_1.BehaviorSubject({
@@ -25,17 +25,17 @@ var AppComponent = (function () {
             headers: {}
         });
     }
-    AppComponent.prototype.ngOnInit = function () {
+    CoRequestManagerComponent.prototype.ngOnInit = function () {
         this.saveRequestForm = this.formBuilder.group({
             newRequestName: ['', forms_1.Validators.required],
             newRequestGroup: ['', forms_1.Validators.required]
         });
         this.fc = this.saveRequestForm.controls;
     };
-    AppComponent.prototype.selectedRequest = function ($event) {
+    CoRequestManagerComponent.prototype.selectedRequest = function ($event) {
         this.currentRequest$.next($event);
     };
-    AppComponent.prototype.saveNewRequest = function () {
+    CoRequestManagerComponent.prototype.saveNewRequest = function () {
         if (!this.saveRequestForm.valid) {
             alert('name or group is missing');
             return;
@@ -53,20 +53,21 @@ var AppComponent = (function () {
     __decorate([
         core_1.ViewChild(co_request_form_1.CoRequestFormComponent), 
         __metadata('design:type', co_request_form_1.CoRequestFormComponent)
-    ], AppComponent.prototype, "coRequestFormComponent", void 0);
-    AppComponent = __decorate([
+    ], CoRequestManagerComponent.prototype, "coRequestFormComponent", void 0);
+    CoRequestManagerComponent = __decorate([
         core_1.Component({
-            selector: 'app',
+            selector: 'co-request-manager',
             directives: [
                 co_request_form_1.CoRequestFormComponent,
-                manage_requests_component_1.ManageRequestsComponent,
+                manage_saved_requests_component_1.ManageRequestsComponent,
                 forms_1.REACTIVE_FORM_DIRECTIVES
             ],
-            template: "\n    <div class=\"container\">\n      <h1>Angular 2</h1>\n      <div class=\"row\">\n        <div class=\"col-xs-6\">\n          <manage-requests\n            (selectedRequest)=\"selectedRequest($event)\">\n          </manage-requests>\n          <br>\n\n          <form [formGroup]=\"saveRequestForm\">\n            <div class=\"row\">\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestName\"\n                  placeholder=\"Name\">\n                <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestGroup\"\n                  placeholder=\"Group\">\n                <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <button type=\"button\" class=\"btn btn-primary\"\n                  (click)=\"saveNewRequest()\">\n                  Save request\n                </button>\n              </div>\n            </div>\n          </form>\n        </div>\n        <div class=\"col-xs-6\">\n          <co-request-form-cmp\n            [url]=\"(currentRequest$ | async).url\"\n            [method]=\"(currentRequest$ | async).method\"\n            [body]=\"(currentRequest$ | async).body\"\n            [headers]=\"(currentRequest$ | async).headers\">\n          </co-request-form-cmp>\n        </div>\n      </div>\n    </div>\n  "
+            providers: [request_manager_service_1.RequestManagerService],
+            template: "\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-xs-6\">\n          <manage-requests\n            (selectedRequest)=\"selectedRequest($event)\">\n          </manage-requests>\n          <br>\n\n          <form [formGroup]=\"saveRequestForm\">\n            <div class=\"row\">\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestName\"\n                  placeholder=\"Name\">\n                <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <input type=\"text\" class=\"form-control\"\n                  formControlName=\"newRequestGroup\"\n                  placeholder=\"Group\">\n                <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                  Required field\n                </small>\n              </div>\n              <div class=\"col-xs-4\">\n                <button type=\"button\" class=\"btn btn-primary\"\n                  (click)=\"saveNewRequest()\">\n                  Save request\n                </button>\n              </div>\n            </div>\n          </form>\n        </div>\n        <div class=\"col-xs-6\">\n          <co-request-form-cmp\n            [url]=\"(currentRequest$ | async).url\"\n            [method]=\"(currentRequest$ | async).method\"\n            [body]=\"(currentRequest$ | async).body\"\n            [headers]=\"(currentRequest$ | async).headers\">\n          </co-request-form-cmp>\n        </div>\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [request_manager_service_1.RequestManagerService, forms_1.FormBuilder])
-    ], AppComponent);
-    return AppComponent;
+    ], CoRequestManagerComponent);
+    return CoRequestManagerComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CoRequestManagerComponent = CoRequestManagerComponent;
+//# sourceMappingURL=co-request-manager.component.js.map

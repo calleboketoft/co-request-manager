@@ -1,20 +1,20 @@
 import {Component, ViewChild} from '@angular/core'
 import {FormBuilder, REACTIVE_FORM_DIRECTIVES, Validators} from '@angular/forms'
 import {CoRequestFormComponent} from 'co-request-form/co-request-form'
-import {ManageRequestsComponent} from './manage-requests.component'
+import {ManageRequestsComponent} from './manage-saved-requests.component'
 import {RequestManagerService} from './request-manager.service'
 import {BehaviorSubject} from 'rxjs/Rx'
 
 @Component({
-  selector: 'app',
+  selector: 'co-request-manager',
   directives: [
     CoRequestFormComponent,
     ManageRequestsComponent,
     REACTIVE_FORM_DIRECTIVES
   ],
+  providers: [RequestManagerService],
   template: `
     <div class="container">
-      <h1>Angular 2</h1>
       <div class="row">
         <div class="col-xs-6">
           <manage-requests
@@ -61,7 +61,7 @@ import {BehaviorSubject} from 'rxjs/Rx'
     </div>
   `
 })
-export class AppComponent {
+export class CoRequestManagerComponent {
   @ViewChild(CoRequestFormComponent) coRequestFormComponent: CoRequestFormComponent;
 
   public currentRequest$ = new BehaviorSubject({

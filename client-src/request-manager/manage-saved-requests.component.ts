@@ -1,7 +1,7 @@
 import {Component, Output, EventEmitter} from '@angular/core'
 import {CoListViewTableComponent} from 'co-list-view-table/co-list-view-table'
 import {CbsModel} from 'co-browser-storage/co-browser-storage'
-import {REQUEST_MANAGER_CONFIG} from './browser-storage.config'
+import {REQUEST_MANAGER_CONFIG} from '../example/browser-storage.config'
 
 @Component({
   selector: 'manage-requests',

@@ -7,12 +7,6 @@ export const browserStorageConfig = {
   initialState: [
     // List storage variables here
     {
-      key: DEBUG_MODE,
-      value: 'true',
-      storageType: 'localStorage',
-      valueType: 'text'
-    },
-    {
       key: REQUEST_MANAGER_CONFIG,
       value: '{"requests": []}',
       storageType: 'localStorage',

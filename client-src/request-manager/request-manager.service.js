@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var co_browser_storage_1 = require('co-browser-storage/co-browser-storage');
-var browser_storage_config_1 = require('./browser-storage.config');
+var browser_storage_config_1 = require('../example/browser-storage.config');
 require('rxjs/add/operator/take');
 var RequestManagerService = (function () {
     function RequestManagerService(cbsModel) {

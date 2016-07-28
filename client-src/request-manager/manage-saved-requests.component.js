@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var co_list_view_table_1 = require('co-list-view-table/co-list-view-table');
 var co_browser_storage_1 = require('co-browser-storage/co-browser-storage');
-var browser_storage_config_1 = require('./browser-storage.config');
+var browser_storage_config_1 = require('../example/browser-storage.config');
 var ManageRequestsComponent = (function () {
     function ManageRequestsComponent(cbsModel) {
         this.cbsModel = cbsModel;
@@ -46,4 +46,4 @@ var ManageRequestsComponent = (function () {
     return ManageRequestsComponent;
 }());
 exports.ManageRequestsComponent = ManageRequestsComponent;
-//# sourceMappingURL=manage-requests.component.js.map
+//# sourceMappingURL=manage-saved-requests.component.js.map

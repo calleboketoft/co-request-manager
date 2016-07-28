@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core'
 import {CbsModel} from 'co-browser-storage/co-browser-storage'
-import {REQUEST_MANAGER_CONFIG} from './browser-storage.config'
+import {REQUEST_MANAGER_CONFIG} from '../example/browser-storage.config'
 import 'rxjs/add/operator/take'
 
 @Injectable()
