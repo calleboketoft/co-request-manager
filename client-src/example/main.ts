@@ -2,6 +2,7 @@ import {bootstrap} from '@angular/platform-browser-dynamic'
 import {provideForms, disableDeprecatedForms} from '@angular/forms'
 import {AppComponent} from './app.component'
 import {provideStore} from '@ngrx/store'
+import {RequestManagerService} from './request-manager.service'
 import {
   cbsReducer,
   initializeCbs,
@@ -20,5 +21,6 @@ bootstrap(AppComponent, [
     cbsReducer
   }, {
     cbsReducer: getInitialCbsState()
-  })
+  }),
+  RequestManagerService
 ]).catch(err => console.error(err))

@@ -5,6 +5,7 @@ System.config({
   map: {
     'co-browser-storage': 'node_modules/co-browser-storage',
     'co-request-form': 'node_modules/co-request-form',
+    'co-list-view-table': 'node_modules/co-list-view-table',
     '@angular': 'node_modules/@angular',
     '@ngrx': 'node_modules/@ngrx',
     'rxjs': 'node_modules/rxjs'
@@ -14,6 +15,7 @@ System.config({
     'rxjs': {defaultExtension: 'js'},
     'co-browser-storage': {defaultExtension: 'js'},
     'co-request-form': {defaultExtension: 'js'},
+    'co-list-view-table': {defaultExtension: 'js'},
     '@angular/common': {defaultExtension: 'js', main: 'index.js'},
     '@angular/compiler': {defaultExtension: 'js', main: 'index.js'},
     '@angular/core': {defaultExtension: 'js', main: 'index.js'},

@@ -1,0 +1,17 @@
+{
+  "requests": [
+    {
+      "id": "923a2894-c02b-4e1e-adce-a5fcc1355d99",
+      "name": "user",
+      "method": "GET",
+      "url": "/v1/user",
+      "headers": {
+        "Accept": "Stuff"
+      },
+      "body": "{}",
+      "tags": [
+        "user"
+      ]
+    }
+  ]
+}
