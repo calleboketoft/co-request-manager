@@ -9,8 +9,7 @@
     "prepublish": "npm run build",
     "typescript": "tsc",
     "watch": "tsc -w",
-    "typings": "typings",
-    "postinstall": "typings install"
+    "typings": "typings"
   },
   "repository": {
     "type": "git",
