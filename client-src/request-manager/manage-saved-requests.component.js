@@ -21,17 +21,34 @@ var ManageRequestsComponent = (function () {
             columnDefs: [
                 {
                     field: 'name',
-                    displayName: 'Name'
+                    displayName: 'Name',
+                    search: true
                 },
                 {
                     field: 'method',
-                    displayName: 'Method'
+                    displayName: 'Method',
+                    search: true
+                },
+                {
+                    field: 'group',
+                    displayName: 'Group',
+                    search: true,
+                    sortDefault: true
                 }
             ]
         };
-        this.requestManagerConfig$ = this.cbsModel
+        this.requestList$ = this.cbsModel
             .getItemByKey(this.coRequestManagerConfig.browserStorageKey)
-            .map(function (config) { return JSON.parse(config.value); });
+            .map(function (config) {
+            var configFromStorage = JSON.parse(config.value);
+            var configWithGroup = configFromStorage.requests.map(function (request) {
+                return Object.assign({}, request, {
+                    // just assume that tag[0] is group
+                    group: request.tags[0]
+                });
+            });
+            return configWithGroup;
+        });
     }
     __decorate([
         core_1.Output(), 
@@ -41,7 +58,7 @@ var ManageRequestsComponent = (function () {
         core_1.Component({
             selector: 'manage-requests',
             directives: [co_list_view_table_1.CoListViewTableComponent],
-            template: "\n    <co-list-view-table-cmp\n      [tableConfig]=\"tableConfig\"\n      [tableData]=\"(requestManagerConfig$ | async)?.requests\"\n      (selected)=\"selectedRequest.emit($event)\">\n    </co-list-view-table-cmp>\n  "
+            template: "\n    <co-list-view-table-cmp\n      [tableConfig]=\"tableConfig\"\n      [tableData]=\"requestList$ | async\"\n      (selected)=\"selectedRequest.emit($event)\">\n    </co-list-view-table-cmp>\n  "
         }), 
         __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, co_request_manager_config_1.CoRequestManagerConfig])
     ], ManageRequestsComponent);

@@ -9,7 +9,7 @@ import {CoRequestManagerConfig} from './co-request-manager.config'
   template: `
     <co-list-view-table-cmp
       [tableConfig]="tableConfig"
-      [tableData]="(requestManagerConfig$ | async)?.requests"
+      [tableData]="requestList$ | async"
       (selected)="selectedRequest.emit($event)">
     </co-list-view-table-cmp>
   `
@@ -25,16 +25,33 @@ export class ManageRequestsComponent {
     columnDefs: [
       {
         field: 'name',
-        displayName: 'Name'
+        displayName: 'Name',
+        search: true
       },
       {
         field: 'method',
-        displayName: 'Method'
+        displayName: 'Method',
+        search: true
+      },
+      {
+        field: 'group',
+        displayName: 'Group',
+        search: true,
+        sortDefault: true
       }
     ]
   }
 
-  public requestManagerConfig$ = this.cbsModel
+  public requestList$ = this.cbsModel
     .getItemByKey(this.coRequestManagerConfig.browserStorageKey)
-    .map(config => JSON.parse(config.value))
+    .map(config => {
+      let configFromStorage = JSON.parse(config.value)
+      let configWithGroup = configFromStorage.requests.map(request => {
+        return Object.assign({}, request, {
+          // just assume that tag[0] is group
+          group: request.tags[0]
+        })
+      })
+      return configWithGroup
+    })
 }
