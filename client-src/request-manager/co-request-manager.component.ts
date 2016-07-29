@@ -25,10 +25,10 @@ import {BehaviorSubject} from 'rxjs/Rx'
       <div class="col-xs-6">
         <h4>REST Client</h4>
         <co-request-form-cmp
-          [url]="(currentRequest$ | async).url"
-          [method]="(currentRequest$ | async).method"
-          [body]="(currentRequest$ | async).body"
-          [headers]="(currentRequest$ | async).headers">
+          [url]="url"
+          [method]="method"
+          [body]="body"
+          [headers]="headers">
         </co-request-form-cmp>
         <br>
         <!-- Good place for a request button -->
@@ -73,18 +73,12 @@ import {BehaviorSubject} from 'rxjs/Rx'
   `
 })
 export class CoRequestManagerComponent {
-  @Input() url;
-  @Input() method;
-  @Input() body;
-  @Input() headers;
+  // emit new values when updated
+  @Input() url = '';
+  @Input() method = 'GET';
+  @Input() body = '{}';
+  @Input() headers = {};
   @ViewChild(CoRequestFormComponent) coRequestFormComponent: CoRequestFormComponent;
-
-  public currentRequest$ = new BehaviorSubject({
-    url: this.url || '',
-    method: this.method || 'GET',
-    body: this.body || '{}',
-    headers: this.headers || {}
-  });
 
   public saveRequestForm;
   public fc;
@@ -102,8 +96,11 @@ export class CoRequestManagerComponent {
     this.fc = this.saveRequestForm.controls
   }
 
-  public selectedRequest ($event) {
-    this.currentRequest$.next($event)
+  public selectedRequest ({url, method, body, headers}) {
+    this.url = url
+    this.method = method
+    this.body = body
+    this.headers = headers
   }
 
   public saveNewRequest () {

@@ -13,17 +13,15 @@ var forms_1 = require('@angular/forms');
 var co_request_form_1 = require('co-request-form/co-request-form');
 var manage_saved_requests_component_1 = require('./manage-saved-requests.component');
 var co_request_manager_service_1 = require('./co-request-manager.service');
-var Rx_1 = require('rxjs/Rx');
 var CoRequestManagerComponent = (function () {
     function CoRequestManagerComponent(requestManagerService, formBuilder) {
         this.requestManagerService = requestManagerService;
         this.formBuilder = formBuilder;
-        this.currentRequest$ = new Rx_1.BehaviorSubject({
-            url: this.url || '',
-            method: this.method || 'GET',
-            body: this.body || '{}',
-            headers: this.headers || {}
-        });
+        // emit new values when updated
+        this.url = '';
+        this.method = 'GET';
+        this.body = '{}';
+        this.headers = {};
     }
     CoRequestManagerComponent.prototype.ngOnInit = function () {
         this.saveRequestForm = this.formBuilder.group({
@@ -32,8 +30,12 @@ var CoRequestManagerComponent = (function () {
         });
         this.fc = this.saveRequestForm.controls;
     };
-    CoRequestManagerComponent.prototype.selectedRequest = function ($event) {
-        this.currentRequest$.next($event);
+    CoRequestManagerComponent.prototype.selectedRequest = function (_a) {
+        var url = _a.url, method = _a.method, body = _a.body, headers = _a.headers;
+        this.url = url;
+        this.method = method;
+        this.body = body;
+        this.headers = headers;
     };
     CoRequestManagerComponent.prototype.saveNewRequest = function () {
         if (!this.saveRequestForm.valid) {
@@ -79,7 +81,7 @@ var CoRequestManagerComponent = (function () {
                 forms_1.REACTIVE_FORM_DIRECTIVES
             ],
             providers: [co_request_manager_service_1.CoRequestManagerService],
-            template: "\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <h4>Saved requests</h4>\n        <manage-requests\n          (selectedRequest)=\"selectedRequest($event)\">\n        </manage-requests>\n        <br>\n      </div>\n      <div class=\"col-xs-6\">\n        <h4>REST Client</h4>\n        <co-request-form-cmp\n          [url]=\"(currentRequest$ | async).url\"\n          [method]=\"(currentRequest$ | async).method\"\n          [body]=\"(currentRequest$ | async).body\"\n          [headers]=\"(currentRequest$ | async).headers\">\n        </co-request-form-cmp>\n        <br>\n        <!-- Good place for a request button -->\n        <ng-content></ng-content>\n        <hr>\n        <form [formGroup]=\"saveRequestForm\">\n          <div class=\"row\">\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestName\"\n                placeholder=\"Name\">\n              <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestGroup\"\n                placeholder=\"Group\">\n              <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\" style=\"text-align: right;\">\n              <button type=\"button\" class=\"btn btn-primary\"\n                (click)=\"saveNewRequest()\">\n                Save request\n              </button>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-xs-12\">\n              <small class=\"text-muted\">\n                Save currently entered values as a new request\n              </small>\n            </div>\n          </div>\n        </form>\n        <br>\n      </div>\n    </div>\n  "
+            template: "\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <h4>Saved requests</h4>\n        <manage-requests\n          (selectedRequest)=\"selectedRequest($event)\">\n        </manage-requests>\n        <br>\n      </div>\n      <div class=\"col-xs-6\">\n        <h4>REST Client</h4>\n        <co-request-form-cmp\n          [url]=\"url\"\n          [method]=\"method\"\n          [body]=\"body\"\n          [headers]=\"headers\">\n        </co-request-form-cmp>\n        <br>\n        <!-- Good place for a request button -->\n        <ng-content></ng-content>\n        <hr>\n        <form [formGroup]=\"saveRequestForm\">\n          <div class=\"row\">\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestName\"\n                placeholder=\"Name\">\n              <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestGroup\"\n                placeholder=\"Group\">\n              <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\" style=\"text-align: right;\">\n              <button type=\"button\" class=\"btn btn-primary\"\n                (click)=\"saveNewRequest()\">\n                Save request\n              </button>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-xs-12\">\n              <small class=\"text-muted\">\n                Save currently entered values as a new request\n              </small>\n            </div>\n          </div>\n        </form>\n        <br>\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [co_request_manager_service_1.CoRequestManagerService, forms_1.FormBuilder])
     ], CoRequestManagerComponent);

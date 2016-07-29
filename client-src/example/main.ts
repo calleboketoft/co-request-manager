@@ -1,8 +1,7 @@
 import {bootstrap} from '@angular/platform-browser-dynamic'
 import {provideForms, disableDeprecatedForms} from '@angular/forms'
-import {CoRequestManagerComponent} from '../request-manager/co-request-manager.component'
 import {provideStore} from '@ngrx/store'
-
+import {AppComponent} from './app.component'
 import {provideCoRequestManager} from '../request-manager/co-request-manager.provider'
 import {
   cbsReducer,
@@ -14,7 +13,7 @@ import {browserStorageConfig} from './browser-storage.config'
 
 initializeCbs(browserStorageConfig)
 
-bootstrap(CoRequestManagerComponent, [
+bootstrap(AppComponent, [
   provideCoRequestManager('requestManagerConfig'),
   provideForms(),
   disableDeprecatedForms(),
