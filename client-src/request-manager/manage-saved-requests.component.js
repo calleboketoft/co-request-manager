@@ -34,6 +34,14 @@ var ManageRequestsComponent = (function () {
                     displayName: 'Group',
                     search: true,
                     sortDefault: true
+                },
+                {
+                    displayName: 'Remove',
+                    type: 'button',
+                    config: {
+                        buttonName: 'X',
+                        buttonClass: 'btn btn-sm btn-danger'
+                    }
                 }
             ]
         };
@@ -50,6 +58,31 @@ var ManageRequestsComponent = (function () {
             return configWithGroup;
         });
     }
+    ManageRequestsComponent.prototype.removeItem = function (_a) {
+        var _this = this;
+        var colSpec = _a.colSpec, row = _a.row;
+        if (confirm('Are you sure you want to remove request?')) {
+            this.cbsModel.getItemByKey(this.coRequestManagerConfig.browserStorageKey)
+                .take(1)
+                .subscribe(function (config) {
+                // Currently saved config
+                var configFromStorage = JSON.parse(config.value);
+                // Remove request from requests array
+                var requestsItemRemoved = configFromStorage.requests.filter(function (savedRequest) {
+                    return savedRequest.id !== row.id;
+                });
+                // create updated config object with request removed
+                var updatedConfig = Object.assign({}, configFromStorage, {
+                    requests: requestsItemRemoved
+                });
+                // persist updated config to browser storage
+                _this.cbsModel.updateItem({
+                    key: _this.coRequestManagerConfig.browserStorageKey,
+                    value: JSON.stringify(updatedConfig)
+                });
+            });
+        }
+    };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -58,7 +91,7 @@ var ManageRequestsComponent = (function () {
         core_1.Component({
             selector: 'manage-requests',
             directives: [co_list_view_table_1.CoListViewTableComponent],
-            template: "\n    <co-list-view-table-cmp\n      [tableConfig]=\"tableConfig\"\n      [tableData]=\"requestList$ | async\"\n      (selected)=\"selectedRequest.emit($event)\">\n    </co-list-view-table-cmp>\n  "
+            template: "\n    <co-list-view-table-cmp\n      [tableConfig]=\"tableConfig\"\n      [tableData]=\"requestList$ | async\"\n      (selected)=\"selectedRequest.emit($event)\"\n      (buttonClicked)=\"removeItem($event)\">\n    </co-list-view-table-cmp>\n  "
         }), 
         __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, co_request_manager_config_1.CoRequestManagerConfig])
     ], ManageRequestsComponent);

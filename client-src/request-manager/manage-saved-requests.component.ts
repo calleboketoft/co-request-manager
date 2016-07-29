@@ -10,7 +10,8 @@ import {CoRequestManagerConfig} from './co-request-manager.config'
     <co-list-view-table-cmp
       [tableConfig]="tableConfig"
       [tableData]="requestList$ | async"
-      (selected)="selectedRequest.emit($event)">
+      (selected)="selectedRequest.emit($event)"
+      (buttonClicked)="removeItem($event)">
     </co-list-view-table-cmp>
   `
 })
@@ -38,6 +39,14 @@ export class ManageRequestsComponent {
         displayName: 'Group',
         search: true,
         sortDefault: true
+      },
+      {
+        displayName: 'Remove',
+        type: 'button',
+        config: {
+          buttonName: 'X',
+          buttonClass: 'btn btn-sm btn-danger'
+        }
       }
     ]
   }
@@ -54,4 +63,28 @@ export class ManageRequestsComponent {
       })
       return configWithGroup
     })
+
+  public removeItem ({colSpec, row}) {
+    if (confirm('Are you sure you want to remove request?')) {
+      this.cbsModel.getItemByKey(this.coRequestManagerConfig.browserStorageKey)
+        .take(1)
+        .subscribe(config => {
+          // Currently saved config
+          let configFromStorage = JSON.parse(config.value)
+          // Remove request from requests array
+          let requestsItemRemoved = configFromStorage.requests.filter(savedRequest => {
+            return savedRequest.id !== row.id
+          })
+          // create updated config object with request removed
+          let updatedConfig = Object.assign({}, configFromStorage, {
+            requests: requestsItemRemoved
+          })
+          // persist updated config to browser storage
+          this.cbsModel.updateItem({
+            key: this.coRequestManagerConfig.browserStorageKey,
+            value: JSON.stringify(updatedConfig)
+          })
+        })
+    }
+  }
 }
