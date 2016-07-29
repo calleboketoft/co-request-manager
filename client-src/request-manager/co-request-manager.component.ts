@@ -31,6 +31,8 @@ import {BehaviorSubject} from 'rxjs/Rx'
           [headers]="(currentRequest$ | async).headers">
         </co-request-form-cmp>
         <br>
+        <!-- Good place for a request button -->
+        <ng-content></ng-content>
         <hr>
         <form [formGroup]="saveRequestForm">
           <div class="row">
@@ -50,7 +52,7 @@ import {BehaviorSubject} from 'rxjs/Rx'
                 Required field
               </small>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-4" style="text-align: right;">
               <button type="button" class="btn btn-primary"
                 (click)="saveNewRequest()">
                 Save request
