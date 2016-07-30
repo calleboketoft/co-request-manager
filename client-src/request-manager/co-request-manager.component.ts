@@ -16,7 +16,7 @@ import {BehaviorSubject} from 'rxjs/Rx'
   template: `
     <div class="row">
       <div class="col-xs-6">
-        <h4>Saved requests</h4>
+        <h4>Saved Requests</h4>
         <manage-requests
           (selectedRequest)="selectedRequest($event)">
         </manage-requests>
@@ -34,6 +34,11 @@ import {BehaviorSubject} from 'rxjs/Rx'
         <!-- Good place for a request button -->
         <ng-content></ng-content>
         <hr>
+        <div class="row">
+          <div class="col-xs-12">
+            <label>Save Request</label>
+          </div>
+        </div>
         <form [formGroup]="saveRequestForm">
           <div class="row">
             <div class="col-xs-4">
@@ -53,9 +58,10 @@ import {BehaviorSubject} from 'rxjs/Rx'
               </small>
             </div>
             <div class="col-xs-4" style="text-align: right;">
-              <button type="button" class="btn btn-primary"
+              <button type="button" class="btn btn-outline-success"
+                style="width: 110px;"
                 (click)="saveNewRequest()">
-                Save request
+                + Save
               </button>
             </div>
           </div>

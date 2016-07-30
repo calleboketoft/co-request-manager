@@ -36,11 +36,11 @@ var ManageRequestsComponent = (function () {
                     sortDefault: true
                 },
                 {
-                    displayName: 'Remove',
+                    displayName: '',
                     type: 'button',
                     config: {
-                        buttonName: 'X',
-                        buttonClass: 'btn btn-sm btn-danger'
+                        buttonName: 'remove',
+                        buttonClass: 'btn btn-sm btn-outline-danger'
                     }
                 }
             ]
