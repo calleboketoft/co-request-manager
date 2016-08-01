@@ -13,8 +13,51 @@ Angular 2 REST Request manager
 import {provideCoRequestManager} from '../request-manager/co-request-manager.provider'
 
 bootstrap(MyApp, [
+  // NOTE it's the key without the co-browser-storage namespace here
   provideCoRequestManager('requestManagerConfigBrowserStorageKey')
 ])
+```
+
+- `co-browser-storage.config`:
+
+```javascript
+export const REQUEST_MANAGER_CONFIG = 'requestManagerConfig'
+...
+{
+  key: REQUEST_MANAGER_CONFIG,
+  value: '{"requests":[]}',
+  storageType: 'localStorage',
+  valueType: 'text'
+}
+...
+```
+
+- `some.component.ts`:
+
+```javascript
+import {Component, ViewChild} from '@angular/core'
+
+import {CoRequestManagerComponent} from 'co-request-manager/co-request-manager'
+
+@Component({
+  selector: 'app',
+  directives: [CoRequestManagerComponent],
+  template: `
+    <co-request-manager>
+      <button type="button" class="btn btn-success btn-block" (click)="makeRequest()">
+        Make request
+      </button>
+    </co-request-manager>
+  `
+})
+export class AppComponent {
+  @ViewChild(CoRequestManagerComponent) coRequestManagerComponent: CoRequestManagerComponent
+
+  public makeRequest () {
+    let params = this.coRequestManagerComponent.coRequestFormComponent.request()
+    console.log(params)
+  }
+}
 ```
 
 #### Develop
