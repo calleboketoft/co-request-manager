@@ -16,6 +16,7 @@ var ManageRequestsComponent = (function () {
     function ManageRequestsComponent(cbsModel, coRequestManagerConfig) {
         this.cbsModel = cbsModel;
         this.coRequestManagerConfig = coRequestManagerConfig;
+        this.listHeight = 'auto';
         this.selectedRequest = new core_1.EventEmitter();
         this.tableConfig = {
             columnDefs: [
@@ -84,6 +85,10 @@ var ManageRequestsComponent = (function () {
         }
     };
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ManageRequestsComponent.prototype, "listHeight", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
     ], ManageRequestsComponent.prototype, "selectedRequest", void 0);
@@ -91,7 +96,7 @@ var ManageRequestsComponent = (function () {
         core_1.Component({
             selector: 'manage-requests',
             directives: [co_list_view_table_1.CoListViewTableComponent],
-            template: "\n    <co-list-view-table-cmp\n      [tableConfig]=\"tableConfig\"\n      [tableData]=\"requestList$ | async\"\n      (selected)=\"selectedRequest.emit($event)\"\n      (buttonClicked)=\"removeItem($event)\">\n    </co-list-view-table-cmp>\n  "
+            template: "\n    <div [style.height]=\"listHeight\">\n      <co-list-view-table-cmp\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selected)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </co-list-view-table-cmp>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, co_request_manager_config_1.CoRequestManagerConfig])
     ], ManageRequestsComponent);

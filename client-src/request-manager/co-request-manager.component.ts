@@ -18,6 +18,7 @@ import {BehaviorSubject} from 'rxjs/Rx'
       <div class="col-xs-6">
         <h4>Saved Requests</h4>
         <manage-requests
+          [listHeight]="listHeight"
           (selectedRequest)="selectedRequest($event)">
         </manage-requests>
         <br>
@@ -84,6 +85,7 @@ export class CoRequestManagerComponent {
   @Input() method = 'GET';
   @Input() body = '{}';
   @Input() headers = {};
+  @Input() listHeight;
   @ViewChild(CoRequestFormComponent) coRequestFormComponent: CoRequestFormComponent;
 
   public saveRequestForm;

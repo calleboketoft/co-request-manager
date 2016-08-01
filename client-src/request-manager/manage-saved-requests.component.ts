@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core'
+import {Component, Output, EventEmitter, Input} from '@angular/core'
 import {CoListViewTableComponent} from 'co-list-view-table/co-list-view-table'
 import {CbsModel} from 'co-browser-storage/co-browser-storage'
 import {CoRequestManagerConfig} from './co-request-manager.config'
@@ -7,15 +7,18 @@ import {CoRequestManagerConfig} from './co-request-manager.config'
   selector: 'manage-requests',
   directives: [CoListViewTableComponent],
   template: `
-    <co-list-view-table-cmp
-      [tableConfig]="tableConfig"
-      [tableData]="requestList$ | async"
-      (selected)="selectedRequest.emit($event)"
-      (buttonClicked)="removeItem($event)">
-    </co-list-view-table-cmp>
+    <div [style.height]="listHeight">
+      <co-list-view-table-cmp
+        [tableConfig]="tableConfig"
+        [tableData]="requestList$ | async"
+        (selected)="selectedRequest.emit($event)"
+        (buttonClicked)="removeItem($event)">
+      </co-list-view-table-cmp>
+    </div>
   `
 })
 export class ManageRequestsComponent {
+  @Input() listHeight = 'auto';
   @Output() selectedRequest = new EventEmitter();
   constructor (
     private cbsModel: CbsModel,

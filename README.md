@@ -34,6 +34,8 @@ export const REQUEST_MANAGER_CONFIG = 'requestManagerConfig'
 
 - `some.component.ts`:
 
+Note that listHeight is optional
+
 ```javascript
 import {Component, ViewChild} from '@angular/core'
 
@@ -43,7 +45,8 @@ import {CoRequestManagerComponent} from 'co-request-manager/co-request-manager'
   selector: 'app',
   directives: [CoRequestManagerComponent],
   template: `
-    <co-request-manager>
+    <co-request-manager
+      [listHeight]="'300px'">
       <button type="button" class="btn btn-success btn-block" (click)="makeRequest()">
         Make request
       </button>
