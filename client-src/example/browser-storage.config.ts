@@ -7,7 +7,7 @@ export const browserStorageConfig = {
   initialState: [
     {
       key: REQUEST_MANAGER_CONFIG,
-      value: '{"requests": []}',
+      value: `{"requests":[{"id":"07679251-7afb-49f0-b051-b3496824bbb5","name":"dummy","method":"GET","url":"http://something","headers":{"Some":"Header"},"body":"{}","tags":["examples"]}]}`,
       storageType: 'localStorage',
       valueType: 'text'
     }
