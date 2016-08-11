@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var browser_storage_1 = require('@calle/ng2-browser-storage/browser-storage');
+var ng2_browser_storage_1 = require('@calle/ng2-browser-storage');
 var request_manager_config_1 = require('./request-manager.config');
 var ManageSavedRequestsComponent = (function () {
     function ManageSavedRequestsComponent(browserStorageModel, requestManagerConfig) {
@@ -96,7 +96,7 @@ var ManageSavedRequestsComponent = (function () {
             selector: 'manage-requests',
             template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selected)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
         }), 
-        __metadata('design:paramtypes', [browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
+        __metadata('design:paramtypes', [ng2_browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
     ], ManageSavedRequestsComponent);
     return ManageSavedRequestsComponent;
 }());

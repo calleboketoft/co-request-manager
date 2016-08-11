@@ -13,10 +13,10 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
 var store_1 = require('@ngrx/store');
-var browser_storage_1 = require('@calle/ng2-browser-storage/browser-storage');
+var ng2_browser_storage_1 = require('@calle/ng2-browser-storage');
 var browser_storage_config_1 = require('./browser-storage.config');
-var request_manager_1 = require('../../request-manager');
-browser_storage_1.initializeBrowserStorage(browser_storage_config_1.browserStorageConfig);
+var _1 = require('../../');
+ng2_browser_storage_1.initializeBrowserStorage(browser_storage_config_1.browserStorageConfig);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,16 +26,16 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.ReactiveFormsModule,
-                request_manager_1.RequestManagerModule
+                _1.RequestManagerModule
             ],
             bootstrap: [app_component_1.AppComponent],
             providers: [
-                request_manager_1.provideRequestManager('requestManagerConfig'),
-                browser_storage_1.BrowserStorageModel,
+                _1.provideRequestManager('requestManagerConfig'),
+                ng2_browser_storage_1.BrowserStorageModel,
                 store_1.provideStore({
-                    browserStorageReducer: browser_storage_1.browserStorageReducer
+                    browserStorageReducer: ng2_browser_storage_1.browserStorageReducer
                 }, {
-                    browserStorageReducer: browser_storage_1.getInitialBrowserStorageState()
+                    browserStorageReducer: ng2_browser_storage_1.getInitialBrowserStorageState()
                 })
             ]
         }), 

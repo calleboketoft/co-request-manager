@@ -9,13 +9,13 @@ import {
   initializeBrowserStorage,
   getInitialBrowserStorageState,
   BrowserStorageModel
-} from '@calle/ng2-browser-storage/browser-storage'
+} from '@calle/ng2-browser-storage'
 import { browserStorageConfig } from './browser-storage.config'
 
 import {
   RequestManagerModule,
   provideRequestManager
-} from '../../request-manager'
+} from '../../'
 
 initializeBrowserStorage(browserStorageConfig)
 

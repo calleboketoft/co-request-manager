@@ -11,10 +11,10 @@ System.config({
     'rxjs': 'node_modules/rxjs'
   },
   packages: {
-    '': {defaultExtension: 'js'},
+    '': {defaultExtension: 'js', main: 'index.js'},
     'client-src': {defaultExtension: 'js'},
     'rxjs': {defaultExtension: 'js'},
-    '@calle/ng2-browser-storage': {defaultExtension: 'js'},
+    '@calle/ng2-browser-storage': {defaultExtension: 'js', main: 'index.js'},
     '@calle/ng2-request-form': {defaultExtension: 'js'},
     '@calle/ng2-table': {defaultExtension: 'js'},
     '@angular/common': {defaultExtension: 'js', main: 'index.js'},

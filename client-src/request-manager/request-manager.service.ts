@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BrowserStorageModel } from '@calle/ng2-browser-storage/browser-storage'
+import { BrowserStorageModel } from '@calle/ng2-browser-storage'
 import { RequestManagerConfig } from './request-manager.config'
 import 'rxjs/add/operator/take'
 

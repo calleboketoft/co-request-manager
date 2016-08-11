@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var browser_storage_1 = require('@calle/ng2-browser-storage/browser-storage');
+var ng2_browser_storage_1 = require('@calle/ng2-browser-storage');
 var request_manager_config_1 = require('./request-manager.config');
 require('rxjs/add/operator/take');
 var RequestManagerService = (function () {
@@ -55,7 +55,7 @@ var RequestManagerService = (function () {
     };
     RequestManagerService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
+        __metadata('design:paramtypes', [ng2_browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
     ], RequestManagerService);
     return RequestManagerService;
 }());
