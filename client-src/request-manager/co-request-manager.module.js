@@ -29,6 +29,9 @@ var CoRequestManagerModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.ReactiveFormsModule
             ],
+            exports: [
+                co_request_manager_component_1.CoRequestManagerComponent
+            ],
             providers: [
                 co_request_manager_service_1.CoRequestManagerService
             ]

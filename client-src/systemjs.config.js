@@ -10,6 +10,7 @@ System.config({
         'rxjs': 'node_modules/rxjs'
     },
     packages: {
+        '': { defaultExtension: 'js' },
         'client-src': { defaultExtension: 'js' },
         'rxjs': { defaultExtension: 'js' },
         'co-browser-storage': { defaultExtension: 'js' },

@@ -4,7 +4,6 @@ import { AppComponent } from './app.component'
 
 import { ReactiveFormsModule } from '@angular/forms'
 import { provideStore } from '@ngrx/store'
-import { provideCoRequestManager } from '../request-manager/co-request-manager.provider'
 import {
   cbsReducer,
   initializeCbs,
@@ -13,7 +12,10 @@ import {
 } from 'co-browser-storage/co-browser-storage'
 import { browserStorageConfig } from './browser-storage.config'
 
-import { CoRequestManagerModule } from '../request-manager/co-request-manager.module'
+import {
+  CoRequestManagerModule,
+  provideCoRequestManager
+} from '../../co-request-manager'
 
 initializeCbs(browserStorageConfig)
 

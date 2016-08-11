@@ -17,6 +17,9 @@ import { CoRequestManagerService } from './co-request-manager.service'
     BrowserModule,
     ReactiveFormsModule
   ],
+  exports: [
+    CoRequestManagerComponent
+  ],
   providers: [
     CoRequestManagerService
   ]
