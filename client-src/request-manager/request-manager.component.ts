@@ -2,7 +2,7 @@ import { Component, ViewChild, Input} from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { RequestManagerService } from './request-manager.service'
 import { BehaviorSubject } from 'rxjs/Rx'
-import { Ng2RequestFormComponent } from '@calle/ng2-request-form/ng2-request-form'
+import { RequestFormComponent } from '@calle/ng2-request-form/request-form'
 
 @Component({
   selector: 'request-manager',
@@ -18,12 +18,12 @@ import { Ng2RequestFormComponent } from '@calle/ng2-request-form/ng2-request-for
       </div>
       <div class="col-xs-6">
         <h4>REST Client</h4>
-        <ng2-request-form
+        <request-form
           [url]="url"
           [method]="method"
           [body]="body"
           [headers]="headers">
-        </ng2-request-form>
+        </request-form>
         <br>
         <!-- Good place for a request button -->
         <ng-content></ng-content>
@@ -79,7 +79,7 @@ export class RequestManagerComponent {
   @Input() body = '{}';
   @Input() headers = {};
   @Input() listHeight;
-  @ViewChild(Ng2RequestFormComponent) ng2RequestFormComponent: Ng2RequestFormComponent;
+  @ViewChild(RequestFormComponent) requestFormComponent: RequestFormComponent;
 
   public saveRequestForm;
   public fc;
@@ -110,7 +110,7 @@ export class RequestManagerComponent {
       return
     }
 
-    let requestData = this.ng2RequestFormComponent.request()
+    let requestData = this.requestFormComponent.request()
     let newRequestNameControl = this.saveRequestForm.controls.newRequestName
     let newRequestGroupControl = this.saveRequestForm.controls.newRequestGroup
 

@@ -15,7 +15,7 @@ export class AppComponent {
   @ViewChild(RequestManagerComponent) requestManagerComponent: RequestManagerComponent
 
   public makeRequest () {
-    let params = this.requestManagerComponent.ng2RequestFormComponent.request()
+    let params = this.requestManagerComponent.requestFormComponent.request()
     console.log(params)
   }
 }

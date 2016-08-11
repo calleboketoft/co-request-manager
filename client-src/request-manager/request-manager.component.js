@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var request_manager_service_1 = require('./request-manager.service');
-var ng2_request_form_1 = require('@calle/ng2-request-form/ng2-request-form');
+var request_form_1 = require('@calle/ng2-request-form/request-form');
 var RequestManagerComponent = (function () {
     function RequestManagerComponent(requestManagerService, formBuilder) {
         this.requestManagerService = requestManagerService;
@@ -41,7 +41,7 @@ var RequestManagerComponent = (function () {
             alert('name or group is missing');
             return;
         }
-        var requestData = this.ng2RequestFormComponent.request();
+        var requestData = this.requestFormComponent.request();
         var newRequestNameControl = this.saveRequestForm.controls.newRequestName;
         var newRequestGroupControl = this.saveRequestForm.controls.newRequestGroup;
         this.requestManagerService.saveNewRequest(Object.assign({}, requestData, {
@@ -72,13 +72,13 @@ var RequestManagerComponent = (function () {
         __metadata('design:type', Object)
     ], RequestManagerComponent.prototype, "listHeight", void 0);
     __decorate([
-        core_1.ViewChild(ng2_request_form_1.Ng2RequestFormComponent), 
-        __metadata('design:type', ng2_request_form_1.Ng2RequestFormComponent)
-    ], RequestManagerComponent.prototype, "ng2RequestFormComponent", void 0);
+        core_1.ViewChild(request_form_1.RequestFormComponent), 
+        __metadata('design:type', request_form_1.RequestFormComponent)
+    ], RequestManagerComponent.prototype, "requestFormComponent", void 0);
     RequestManagerComponent = __decorate([
         core_1.Component({
             selector: 'request-manager',
-            template: "\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <h4>Saved Requests</h4>\n        <manage-requests\n          [listHeight]=\"listHeight\"\n          (selectedRequest)=\"selectedRequest($event)\">\n        </manage-requests>\n        <br>\n      </div>\n      <div class=\"col-xs-6\">\n        <h4>REST Client</h4>\n        <ng2-request-form\n          [url]=\"url\"\n          [method]=\"method\"\n          [body]=\"body\"\n          [headers]=\"headers\">\n        </ng2-request-form>\n        <br>\n        <!-- Good place for a request button -->\n        <ng-content></ng-content>\n        <hr>\n        <div class=\"row\">\n          <div class=\"col-xs-12\">\n            <label>Save Request</label>\n          </div>\n        </div>\n        <form [formGroup]=\"saveRequestForm\">\n          <div class=\"row\">\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestName\"\n                placeholder=\"Name\">\n              <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestGroup\"\n                placeholder=\"Group\">\n              <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\" style=\"text-align: right;\">\n              <button type=\"button\" class=\"btn btn-outline-success\"\n                style=\"width: 110px;\"\n                (click)=\"saveNewRequest()\">\n                + Save\n              </button>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-xs-12\">\n              <small class=\"text-muted\">\n                Save currently entered values as a new request\n              </small>\n            </div>\n          </div>\n        </form>\n        <br>\n      </div>\n    </div>\n  "
+            template: "\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <h4>Saved Requests</h4>\n        <manage-requests\n          [listHeight]=\"listHeight\"\n          (selectedRequest)=\"selectedRequest($event)\">\n        </manage-requests>\n        <br>\n      </div>\n      <div class=\"col-xs-6\">\n        <h4>REST Client</h4>\n        <request-form\n          [url]=\"url\"\n          [method]=\"method\"\n          [body]=\"body\"\n          [headers]=\"headers\">\n        </request-form>\n        <br>\n        <!-- Good place for a request button -->\n        <ng-content></ng-content>\n        <hr>\n        <div class=\"row\">\n          <div class=\"col-xs-12\">\n            <label>Save Request</label>\n          </div>\n        </div>\n        <form [formGroup]=\"saveRequestForm\">\n          <div class=\"row\">\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestName\"\n                placeholder=\"Name\">\n              <small [hidden]=\"fc.newRequestName.valid || fc.newRequestName.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\">\n              <input type=\"text\" class=\"form-control\"\n                formControlName=\"newRequestGroup\"\n                placeholder=\"Group\">\n              <small [hidden]=\"fc.newRequestGroup.valid || fc.newRequestGroup.pristine\">\n                Required field\n              </small>\n            </div>\n            <div class=\"col-xs-4\" style=\"text-align: right;\">\n              <button type=\"button\" class=\"btn btn-outline-success\"\n                style=\"width: 110px;\"\n                (click)=\"saveNewRequest()\">\n                + Save\n              </button>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-xs-12\">\n              <small class=\"text-muted\">\n                Save currently entered values as a new request\n              </small>\n            </div>\n          </div>\n        </form>\n        <br>\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [request_manager_service_1.RequestManagerService, forms_1.FormBuilder])
     ], RequestManagerComponent);

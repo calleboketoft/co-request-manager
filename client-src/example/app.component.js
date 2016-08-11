@@ -14,7 +14,7 @@ var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent.prototype.makeRequest = function () {
-        var params = this.requestManagerComponent.ng2RequestFormComponent.request();
+        var params = this.requestManagerComponent.requestFormComponent.request();
         console.log(params);
     };
     __decorate([
