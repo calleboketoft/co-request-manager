@@ -5,11 +5,11 @@ import { AppComponent } from './app.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { provideStore } from '@ngrx/store'
 import {
-  cbsReducer,
-  initializeCbs,
-  getInitialCbsState,
-  CbsModel
-} from '@calle/ng2-browser-storage/co-browser-storage'
+  browserStorageReducer,
+  initializeBrowserStorage,
+  getInitialBrowserStorageState,
+  BrowserStorageModel
+} from '@calle/ng2-browser-storage/browser-storage'
 import { browserStorageConfig } from './browser-storage.config'
 
 import {
@@ -17,7 +17,7 @@ import {
   provideRequestManager
 } from '../../request-manager'
 
-initializeCbs(browserStorageConfig)
+initializeBrowserStorage(browserStorageConfig)
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,11 +29,11 @@ initializeCbs(browserStorageConfig)
   bootstrap: [AppComponent],
   providers: [
     provideRequestManager('requestManagerConfig'),
-    CbsModel,
+    BrowserStorageModel,
     provideStore({
-      cbsReducer
+      browserStorageReducer
     }, {
-      cbsReducer: getInitialCbsState()
+      browserStorageReducer: getInitialBrowserStorageState()
     })
   ]
 })

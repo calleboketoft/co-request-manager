@@ -1,16 +1,16 @@
 "use strict";
 var request_manager_service_1 = require('./request-manager.service');
 var request_manager_config_1 = require('./request-manager.config');
-var co_browser_storage_1 = require('@calle/ng2-browser-storage/co-browser-storage');
+var browser_storage_1 = require('@calle/ng2-browser-storage/browser-storage');
 // call this like provideCoRequestManager('theKeyInCbs')
 function provideRequestManager(cbsRequestManagerConfigKey) {
-    var requestManagerServiceFactory = function (cbsModel, requestManagerConfig) {
-        return new request_manager_service_1.RequestManagerService(cbsModel, requestManagerConfig);
+    var requestManagerServiceFactory = function (browserStorageModel, requestManagerConfig) {
+        return new request_manager_service_1.RequestManagerService(browserStorageModel, requestManagerConfig);
     };
     var requestManagerServiceProvider = {
         provide: request_manager_service_1.RequestManagerService,
         useFactory: requestManagerServiceFactory,
-        deps: [co_browser_storage_1.CbsModel, request_manager_config_1.RequestManagerConfig]
+        deps: [browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig]
     };
     var requestManagerConfigFactory = function () {
         return new request_manager_config_1.RequestManagerConfig(cbsRequestManagerConfigKey);

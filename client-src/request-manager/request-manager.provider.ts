@@ -1,17 +1,17 @@
 import {RequestManagerService} from './request-manager.service'
 import {RequestManagerConfig} from './request-manager.config'
-import {CbsModel} from '@calle/ng2-browser-storage/co-browser-storage'
+import {BrowserStorageModel} from '@calle/ng2-browser-storage/browser-storage'
 
 // call this like provideCoRequestManager('theKeyInCbs')
 export function provideRequestManager (cbsRequestManagerConfigKey) {
-  let requestManagerServiceFactory = (cbsModel, requestManagerConfig) => {
-    return new RequestManagerService(cbsModel, requestManagerConfig)
+  let requestManagerServiceFactory = (browserStorageModel, requestManagerConfig) => {
+    return new RequestManagerService(browserStorageModel, requestManagerConfig)
   }
 
   let requestManagerServiceProvider = {
     provide: RequestManagerService,
     useFactory: requestManagerServiceFactory,
-    deps: [CbsModel, RequestManagerConfig]
+    deps: [BrowserStorageModel, RequestManagerConfig]
   }
 
   let requestManagerConfigFactory = () => {

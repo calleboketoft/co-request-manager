@@ -13,10 +13,10 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var forms_1 = require('@angular/forms');
 var store_1 = require('@ngrx/store');
-var co_browser_storage_1 = require('@calle/ng2-browser-storage/co-browser-storage');
+var browser_storage_1 = require('@calle/ng2-browser-storage/browser-storage');
 var browser_storage_config_1 = require('./browser-storage.config');
 var request_manager_1 = require('../../request-manager');
-co_browser_storage_1.initializeCbs(browser_storage_config_1.browserStorageConfig);
+browser_storage_1.initializeBrowserStorage(browser_storage_config_1.browserStorageConfig);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,11 +31,11 @@ var AppModule = (function () {
             bootstrap: [app_component_1.AppComponent],
             providers: [
                 request_manager_1.provideRequestManager('requestManagerConfig'),
-                co_browser_storage_1.CbsModel,
+                browser_storage_1.BrowserStorageModel,
                 store_1.provideStore({
-                    cbsReducer: co_browser_storage_1.cbsReducer
+                    browserStorageReducer: browser_storage_1.browserStorageReducer
                 }, {
-                    cbsReducer: co_browser_storage_1.getInitialCbsState()
+                    browserStorageReducer: browser_storage_1.getInitialBrowserStorageState()
                 })
             ]
         }), 

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core'
-import { CbsModel } from '@calle/ng2-browser-storage/co-browser-storage'
+import { BrowserStorageModel } from '@calle/ng2-browser-storage/browser-storage'
 import { RequestManagerConfig } from './request-manager.config'
 
 @Component({
@@ -19,7 +19,7 @@ export class ManageSavedRequestsComponent {
   @Input() listHeight = 'auto';
   @Output() selectedRequest = new EventEmitter();
   constructor (
-    private cbsModel: CbsModel,
+    private browserStorageModel: BrowserStorageModel,
     private requestManagerConfig: RequestManagerConfig
   ) {}
 
@@ -52,7 +52,7 @@ export class ManageSavedRequestsComponent {
     ]
   }
 
-  public requestList$ = this.cbsModel
+  public requestList$ = this.browserStorageModel
     .getItemByKey(this.requestManagerConfig.browserStorageKey)
     .map(config => {
       let configFromStorage = JSON.parse(config.value)
@@ -67,7 +67,7 @@ export class ManageSavedRequestsComponent {
 
   public removeItem ({colSpec, row}) {
     if (confirm('Are you sure you want to remove request?')) {
-      this.cbsModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
+      this.browserStorageModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
         .take(1)
         .subscribe(config => {
           // Currently saved config
@@ -81,7 +81,7 @@ export class ManageSavedRequestsComponent {
             requests: requestsItemRemoved
           })
           // persist updated config to browser storage
-          this.cbsModel.updateItem({
+          this.browserStorageModel.updateItem({
             key: this.requestManagerConfig.browserStorageKey,
             value: JSON.stringify(updatedConfig)
           })

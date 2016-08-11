@@ -9,12 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var co_browser_storage_1 = require('@calle/ng2-browser-storage/co-browser-storage');
+var browser_storage_1 = require('@calle/ng2-browser-storage/browser-storage');
 var request_manager_config_1 = require('./request-manager.config');
 require('rxjs/add/operator/take');
 var RequestManagerService = (function () {
-    function RequestManagerService(cbsModel, requestManagerConfig) {
-        this.cbsModel = cbsModel;
+    function RequestManagerService(browserStorageModel, requestManagerConfig) {
+        this.browserStorageModel = browserStorageModel;
         this.requestManagerConfig = requestManagerConfig;
     }
     RequestManagerService.prototype.saveNewRequest = function (_a) {
@@ -29,11 +29,11 @@ var RequestManagerService = (function () {
             body: body,
             tags: tags
         };
-        this.cbsModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
+        this.browserStorageModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
             .take(1).subscribe(function (config) {
             var existingConfig = JSON.parse(config.value);
             existingConfig.requests.push(newItem);
-            _this.cbsModel.updateItem({
+            _this.browserStorageModel.updateItem({
                 key: _this.requestManagerConfig.browserStorageKey,
                 value: JSON.stringify(existingConfig)
             });
@@ -55,7 +55,7 @@ var RequestManagerService = (function () {
     };
     RequestManagerService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, request_manager_config_1.RequestManagerConfig])
+        __metadata('design:paramtypes', [browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
     ], RequestManagerService);
     return RequestManagerService;
 }());

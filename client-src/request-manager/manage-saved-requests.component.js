@@ -9,11 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var co_browser_storage_1 = require('@calle/ng2-browser-storage/co-browser-storage');
+var browser_storage_1 = require('@calle/ng2-browser-storage/browser-storage');
 var request_manager_config_1 = require('./request-manager.config');
 var ManageSavedRequestsComponent = (function () {
-    function ManageSavedRequestsComponent(cbsModel, requestManagerConfig) {
-        this.cbsModel = cbsModel;
+    function ManageSavedRequestsComponent(browserStorageModel, requestManagerConfig) {
+        this.browserStorageModel = browserStorageModel;
         this.requestManagerConfig = requestManagerConfig;
         this.listHeight = 'auto';
         this.selectedRequest = new core_1.EventEmitter();
@@ -45,7 +45,7 @@ var ManageSavedRequestsComponent = (function () {
                 }
             ]
         };
-        this.requestList$ = this.cbsModel
+        this.requestList$ = this.browserStorageModel
             .getItemByKey(this.requestManagerConfig.browserStorageKey)
             .map(function (config) {
             var configFromStorage = JSON.parse(config.value);
@@ -62,7 +62,7 @@ var ManageSavedRequestsComponent = (function () {
         var _this = this;
         var colSpec = _a.colSpec, row = _a.row;
         if (confirm('Are you sure you want to remove request?')) {
-            this.cbsModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
+            this.browserStorageModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
                 .take(1)
                 .subscribe(function (config) {
                 // Currently saved config
@@ -76,7 +76,7 @@ var ManageSavedRequestsComponent = (function () {
                     requests: requestsItemRemoved
                 });
                 // persist updated config to browser storage
-                _this.cbsModel.updateItem({
+                _this.browserStorageModel.updateItem({
                     key: _this.requestManagerConfig.browserStorageKey,
                     value: JSON.stringify(updatedConfig)
                 });
@@ -96,7 +96,7 @@ var ManageSavedRequestsComponent = (function () {
             selector: 'manage-requests',
             template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selected)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
         }), 
-        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, request_manager_config_1.RequestManagerConfig])
+        __metadata('design:paramtypes', [browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
     ], ManageSavedRequestsComponent);
     return ManageSavedRequestsComponent;
 }());
