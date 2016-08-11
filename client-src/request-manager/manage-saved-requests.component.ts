@@ -1,28 +1,26 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core'
-import { CoListViewTableComponent } from 'co-list-view-table/co-list-view-table'
-import { CbsModel } from 'co-browser-storage/co-browser-storage'
-import { CoRequestManagerConfig } from './co-request-manager.config'
+import { CbsModel } from '@calle/ng2-browser-storage/co-browser-storage'
+import { RequestManagerConfig } from './request-manager.config'
 
 @Component({
   selector: 'manage-requests',
-  directives: [CoListViewTableComponent],
   template: `
     <div [style.height]="listHeight">
-      <co-list-view-table-cmp
+      <ng2-table
         [tableConfig]="tableConfig"
         [tableData]="requestList$ | async"
         (selected)="selectedRequest.emit($event)"
         (buttonClicked)="removeItem($event)">
-      </co-list-view-table-cmp>
+      </ng2-table>
     </div>
   `
 })
-export class ManageRequestsComponent {
+export class ManageSavedRequestsComponent {
   @Input() listHeight = 'auto';
   @Output() selectedRequest = new EventEmitter();
   constructor (
     private cbsModel: CbsModel,
-    private coRequestManagerConfig: CoRequestManagerConfig
+    private requestManagerConfig: RequestManagerConfig
   ) {}
 
   public tableConfig = {
@@ -55,7 +53,7 @@ export class ManageRequestsComponent {
   }
 
   public requestList$ = this.cbsModel
-    .getItemByKey(this.coRequestManagerConfig.browserStorageKey)
+    .getItemByKey(this.requestManagerConfig.browserStorageKey)
     .map(config => {
       let configFromStorage = JSON.parse(config.value)
       let configWithGroup = configFromStorage.requests.map(request => {
@@ -69,7 +67,7 @@ export class ManageRequestsComponent {
 
   public removeItem ({colSpec, row}) {
     if (confirm('Are you sure you want to remove request?')) {
-      this.cbsModel.getItemByKey(this.coRequestManagerConfig.browserStorageKey)
+      this.cbsModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
         .take(1)
         .subscribe(config => {
           // Currently saved config
@@ -84,7 +82,7 @@ export class ManageRequestsComponent {
           })
           // persist updated config to browser storage
           this.cbsModel.updateItem({
-            key: this.coRequestManagerConfig.browserStorageKey,
+            key: this.requestManagerConfig.browserStorageKey,
             value: JSON.stringify(updatedConfig)
           })
         })

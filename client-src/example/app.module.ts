@@ -9,13 +9,13 @@ import {
   initializeCbs,
   getInitialCbsState,
   CbsModel
-} from 'co-browser-storage/co-browser-storage'
+} from '@calle/ng2-browser-storage/co-browser-storage'
 import { browserStorageConfig } from './browser-storage.config'
 
 import {
-  CoRequestManagerModule,
-  provideCoRequestManager
-} from '../../co-request-manager'
+  RequestManagerModule,
+  provideRequestManager
+} from '../../request-manager'
 
 initializeCbs(browserStorageConfig)
 
@@ -24,11 +24,11 @@ initializeCbs(browserStorageConfig)
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    CoRequestManagerModule
+    RequestManagerModule
   ],
   bootstrap: [AppComponent],
   providers: [
-    provideCoRequestManager('requestManagerConfig'),
+    provideRequestManager('requestManagerConfig'),
     CbsModel,
     provideStore({
       cbsReducer

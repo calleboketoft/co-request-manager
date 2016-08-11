@@ -1,21 +1,21 @@
 import {Component, ViewChild} from '@angular/core'
-import {CoRequestManagerComponent} from '../../co-request-manager'
+import {RequestManagerComponent} from '../../request-manager'
 
 @Component({
   selector: 'app',
   template: `
-    <co-request-manager>
+    <request-manager>
       <button type="button" class="btn btn-success btn-block" (click)="makeRequest()">
         Make request
       </button>
-    </co-request-manager>
+    </request-manager>
   `
 })
 export class AppComponent {
-  @ViewChild(CoRequestManagerComponent) coRequestManagerComponent: CoRequestManagerComponent
+  @ViewChild(RequestManagerComponent) requestManagerComponent: RequestManagerComponent
 
   public makeRequest () {
-    let params = this.coRequestManagerComponent.coRequestFormComponent.request()
+    let params = this.requestManagerComponent.ng2RequestFormComponent.request()
     console.log(params)
   }
 }

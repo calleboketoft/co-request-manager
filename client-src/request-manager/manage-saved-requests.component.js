@@ -9,13 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var co_list_view_table_1 = require('co-list-view-table/co-list-view-table');
-var co_browser_storage_1 = require('co-browser-storage/co-browser-storage');
-var co_request_manager_config_1 = require('./co-request-manager.config');
-var ManageRequestsComponent = (function () {
-    function ManageRequestsComponent(cbsModel, coRequestManagerConfig) {
+var co_browser_storage_1 = require('@calle/ng2-browser-storage/co-browser-storage');
+var request_manager_config_1 = require('./request-manager.config');
+var ManageSavedRequestsComponent = (function () {
+    function ManageSavedRequestsComponent(cbsModel, requestManagerConfig) {
         this.cbsModel = cbsModel;
-        this.coRequestManagerConfig = coRequestManagerConfig;
+        this.requestManagerConfig = requestManagerConfig;
         this.listHeight = 'auto';
         this.selectedRequest = new core_1.EventEmitter();
         this.tableConfig = {
@@ -47,7 +46,7 @@ var ManageRequestsComponent = (function () {
             ]
         };
         this.requestList$ = this.cbsModel
-            .getItemByKey(this.coRequestManagerConfig.browserStorageKey)
+            .getItemByKey(this.requestManagerConfig.browserStorageKey)
             .map(function (config) {
             var configFromStorage = JSON.parse(config.value);
             var configWithGroup = configFromStorage.requests.map(function (request) {
@@ -59,11 +58,11 @@ var ManageRequestsComponent = (function () {
             return configWithGroup;
         });
     }
-    ManageRequestsComponent.prototype.removeItem = function (_a) {
+    ManageSavedRequestsComponent.prototype.removeItem = function (_a) {
         var _this = this;
         var colSpec = _a.colSpec, row = _a.row;
         if (confirm('Are you sure you want to remove request?')) {
-            this.cbsModel.getItemByKey(this.coRequestManagerConfig.browserStorageKey)
+            this.cbsModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
                 .take(1)
                 .subscribe(function (config) {
                 // Currently saved config
@@ -78,7 +77,7 @@ var ManageRequestsComponent = (function () {
                 });
                 // persist updated config to browser storage
                 _this.cbsModel.updateItem({
-                    key: _this.coRequestManagerConfig.browserStorageKey,
+                    key: _this.requestManagerConfig.browserStorageKey,
                     value: JSON.stringify(updatedConfig)
                 });
             });
@@ -87,20 +86,19 @@ var ManageRequestsComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], ManageRequestsComponent.prototype, "listHeight", void 0);
+    ], ManageSavedRequestsComponent.prototype, "listHeight", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], ManageRequestsComponent.prototype, "selectedRequest", void 0);
-    ManageRequestsComponent = __decorate([
+    ], ManageSavedRequestsComponent.prototype, "selectedRequest", void 0);
+    ManageSavedRequestsComponent = __decorate([
         core_1.Component({
             selector: 'manage-requests',
-            directives: [co_list_view_table_1.CoListViewTableComponent],
-            template: "\n    <div [style.height]=\"listHeight\">\n      <co-list-view-table-cmp\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selected)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </co-list-view-table-cmp>\n    </div>\n  "
+            template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selected)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
         }), 
-        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, co_request_manager_config_1.CoRequestManagerConfig])
-    ], ManageRequestsComponent);
-    return ManageRequestsComponent;
+        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, request_manager_config_1.RequestManagerConfig])
+    ], ManageSavedRequestsComponent);
+    return ManageSavedRequestsComponent;
 }());
-exports.ManageRequestsComponent = ManageRequestsComponent;
+exports.ManageSavedRequestsComponent = ManageSavedRequestsComponent;
 //# sourceMappingURL=manage-saved-requests.component.js.map

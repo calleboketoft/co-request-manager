@@ -1,11 +1,11 @@
 import { Component, ViewChild, Input} from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
-import { CoRequestManagerService } from './co-request-manager.service'
-import { CoRequestFormComponent } from 'co-request-form/co-request-form'
+import { RequestManagerService } from './request-manager.service'
 import { BehaviorSubject } from 'rxjs/Rx'
+import { Ng2RequestFormComponent } from '@calle/ng2-request-form/ng2-request-form'
 
 @Component({
-  selector: 'co-request-manager',
+  selector: 'request-manager',
   template: `
     <div class="row">
       <div class="col-xs-6">
@@ -18,12 +18,12 @@ import { BehaviorSubject } from 'rxjs/Rx'
       </div>
       <div class="col-xs-6">
         <h4>REST Client</h4>
-        <co-request-form-cmp
+        <ng2-request-form
           [url]="url"
           [method]="method"
           [body]="body"
           [headers]="headers">
-        </co-request-form-cmp>
+        </ng2-request-form>
         <br>
         <!-- Good place for a request button -->
         <ng-content></ng-content>
@@ -72,20 +72,20 @@ import { BehaviorSubject } from 'rxjs/Rx'
     </div>
   `
 })
-export class CoRequestManagerComponent {
+export class RequestManagerComponent {
   // emit new values when updated
   @Input() url = '';
   @Input() method = 'GET';
   @Input() body = '{}';
   @Input() headers = {};
   @Input() listHeight;
-  @ViewChild(CoRequestFormComponent) coRequestFormComponent: CoRequestFormComponent;
+  @ViewChild(Ng2RequestFormComponent) ng2RequestFormComponent: Ng2RequestFormComponent;
 
   public saveRequestForm;
   public fc;
 
   constructor (
-    private requestManagerService: CoRequestManagerService,
+    private requestManagerService: RequestManagerService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -110,7 +110,7 @@ export class CoRequestManagerComponent {
       return
     }
 
-    let requestData = this.coRequestFormComponent.request()
+    let requestData = this.ng2RequestFormComponent.request()
     let newRequestNameControl = this.saveRequestForm.controls.newRequestName
     let newRequestGroupControl = this.saveRequestForm.controls.newRequestGroup
 

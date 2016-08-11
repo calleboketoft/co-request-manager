@@ -9,15 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var co_browser_storage_1 = require('co-browser-storage/co-browser-storage');
-var co_request_manager_config_1 = require('./co-request-manager.config');
+var co_browser_storage_1 = require('@calle/ng2-browser-storage/co-browser-storage');
+var request_manager_config_1 = require('./request-manager.config');
 require('rxjs/add/operator/take');
-var CoRequestManagerService = (function () {
-    function CoRequestManagerService(cbsModel, coRequestManagerConfig) {
+var RequestManagerService = (function () {
+    function RequestManagerService(cbsModel, requestManagerConfig) {
         this.cbsModel = cbsModel;
-        this.coRequestManagerConfig = coRequestManagerConfig;
+        this.requestManagerConfig = requestManagerConfig;
     }
-    CoRequestManagerService.prototype.saveNewRequest = function (_a) {
+    RequestManagerService.prototype.saveNewRequest = function (_a) {
         var _this = this;
         var name = _a.name, method = _a.method, url = _a.url, body = _a.body, tags = _a.tags, headers = _a.headers;
         var newItem = {
@@ -29,19 +29,19 @@ var CoRequestManagerService = (function () {
             body: body,
             tags: tags
         };
-        this.cbsModel.getItemByKey(this.coRequestManagerConfig.browserStorageKey)
+        this.cbsModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
             .take(1).subscribe(function (config) {
             var existingConfig = JSON.parse(config.value);
             existingConfig.requests.push(newItem);
             _this.cbsModel.updateItem({
-                key: _this.coRequestManagerConfig.browserStorageKey,
+                key: _this.requestManagerConfig.browserStorageKey,
                 value: JSON.stringify(existingConfig)
             });
         });
     };
     // Generate UUID
     // http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-    CoRequestManagerService.prototype.generateUUID = function () {
+    RequestManagerService.prototype.generateUUID = function () {
         var d = new Date().getTime();
         if (window.performance && typeof window.performance.now === 'function') {
             d += performance.now(); //use high-precision timer if available
@@ -53,11 +53,11 @@ var CoRequestManagerService = (function () {
         });
         return uuid;
     };
-    CoRequestManagerService = __decorate([
+    RequestManagerService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, co_request_manager_config_1.CoRequestManagerConfig])
-    ], CoRequestManagerService);
-    return CoRequestManagerService;
+        __metadata('design:paramtypes', [co_browser_storage_1.CbsModel, request_manager_config_1.RequestManagerConfig])
+    ], RequestManagerService);
+    return RequestManagerService;
 }());
-exports.CoRequestManagerService = CoRequestManagerService;
-//# sourceMappingURL=co-request-manager.service.js.map
+exports.RequestManagerService = RequestManagerService;
+//# sourceMappingURL=request-manager.service.js.map

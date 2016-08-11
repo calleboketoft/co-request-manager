@@ -1,3 +1,3 @@
-export class CoRequestManagerConfig {
+export class RequestManagerConfig {
   constructor (public browserStorageKey) {}
 }

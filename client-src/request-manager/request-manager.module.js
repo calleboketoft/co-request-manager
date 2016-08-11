@@ -11,34 +11,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
-var co_request_form_1 = require('co-request-form/co-request-form');
+var ng2_request_form_1 = require('@calle/ng2-request-form/ng2-request-form');
 var manage_saved_requests_component_1 = require('./manage-saved-requests.component');
-var co_request_manager_component_1 = require('./co-request-manager.component');
-var co_request_manager_service_1 = require('./co-request-manager.service');
-var CoRequestManagerModule = (function () {
-    function CoRequestManagerModule() {
+var request_manager_component_1 = require('./request-manager.component');
+var request_manager_service_1 = require('./request-manager.service');
+var RequestManagerModule = (function () {
+    function RequestManagerModule() {
     }
-    CoRequestManagerModule = __decorate([
+    RequestManagerModule = __decorate([
         core_1.NgModule({
             declarations: [
-                co_request_form_1.CoRequestFormComponent,
-                manage_saved_requests_component_1.ManageRequestsComponent,
-                co_request_manager_component_1.CoRequestManagerComponent
+                manage_saved_requests_component_1.ManageSavedRequestsComponent,
+                request_manager_component_1.RequestManagerComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                forms_1.ReactiveFormsModule
+                forms_1.ReactiveFormsModule,
+                ng2_request_form_1.Ng2RequestFormModule
             ],
             exports: [
-                co_request_manager_component_1.CoRequestManagerComponent
+                request_manager_component_1.RequestManagerComponent
             ],
             providers: [
-                co_request_manager_service_1.CoRequestManagerService
+                request_manager_service_1.RequestManagerService
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], CoRequestManagerModule);
-    return CoRequestManagerModule;
+    ], RequestManagerModule);
+    return RequestManagerModule;
 }());
-exports.CoRequestManagerModule = CoRequestManagerModule;
-//# sourceMappingURL=co-request-manager.module.js.map
+exports.RequestManagerModule = RequestManagerModule;
+//# sourceMappingURL=request-manager.module.js.map

@@ -9,22 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var co_request_manager_1 = require('../../co-request-manager');
+var request_manager_1 = require('../../request-manager');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent.prototype.makeRequest = function () {
-        var params = this.coRequestManagerComponent.coRequestFormComponent.request();
+        var params = this.requestManagerComponent.ng2RequestFormComponent.request();
         console.log(params);
     };
     __decorate([
-        core_1.ViewChild(co_request_manager_1.CoRequestManagerComponent), 
-        __metadata('design:type', co_request_manager_1.CoRequestManagerComponent)
-    ], AppComponent.prototype, "coRequestManagerComponent", void 0);
+        core_1.ViewChild(request_manager_1.RequestManagerComponent), 
+        __metadata('design:type', request_manager_1.RequestManagerComponent)
+    ], AppComponent.prototype, "requestManagerComponent", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n    <co-request-manager>\n      <button type=\"button\" class=\"btn btn-success btn-block\" (click)=\"makeRequest()\">\n        Make request\n      </button>\n    </co-request-manager>\n  "
+            template: "\n    <request-manager>\n      <button type=\"button\" class=\"btn btn-success btn-block\" (click)=\"makeRequest()\">\n        Make request\n      </button>\n    </request-manager>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
