@@ -24,7 +24,6 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            directives: [co_request_manager_component_1.CoRequestManagerComponent],
             template: "\n    <co-request-manager>\n      <button type=\"button\" class=\"btn btn-success btn-block\" (click)=\"makeRequest()\">\n        Make request\n      </button>\n    </co-request-manager>\n  "
         }), 
         __metadata('design:paramtypes', [])

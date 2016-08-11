@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core'
-import {CbsModel} from 'co-browser-storage/co-browser-storage'
-import {CoRequestManagerConfig} from './co-request-manager.config'
+import { Injectable } from '@angular/core'
+import { CbsModel } from 'co-browser-storage/co-browser-storage'
+import { CoRequestManagerConfig } from './co-request-manager.config'
 import 'rxjs/add/operator/take'
 
 @Injectable()

@@ -16,6 +16,7 @@ var store_1 = require('@ngrx/store');
 var co_request_manager_provider_1 = require('../request-manager/co-request-manager.provider');
 var co_browser_storage_1 = require('co-browser-storage/co-browser-storage');
 var browser_storage_config_1 = require('./browser-storage.config');
+var co_request_manager_module_1 = require('../request-manager/co-request-manager.module');
 co_browser_storage_1.initializeCbs(browser_storage_config_1.browserStorageConfig);
 var AppModule = (function () {
     function AppModule() {
@@ -23,12 +24,14 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [app_component_1.AppComponent],
-            imports: [platform_browser_1.BrowserModule],
+            imports: [
+                platform_browser_1.BrowserModule,
+                forms_1.ReactiveFormsModule,
+                co_request_manager_module_1.CoRequestManagerModule
+            ],
             bootstrap: [app_component_1.AppComponent],
             providers: [
                 co_request_manager_provider_1.provideCoRequestManager('requestManagerConfig'),
-                forms_1.provideForms(),
-                forms_1.disableDeprecatedForms(),
                 co_browser_storage_1.CbsModel,
                 store_1.provideStore({
                     cbsReducer: co_browser_storage_1.cbsReducer

@@ -1,18 +1,11 @@
-import {Component, ViewChild, Input} from '@angular/core'
-import {FormBuilder, REACTIVE_FORM_DIRECTIVES, Validators} from '@angular/forms'
-import {CoRequestFormComponent} from 'co-request-form/co-request-form'
-import {ManageRequestsComponent} from './manage-saved-requests.component'
-import {CoRequestManagerService} from './co-request-manager.service'
-import {BehaviorSubject} from 'rxjs/Rx'
+import { Component, ViewChild, Input} from '@angular/core'
+import { FormBuilder, Validators } from '@angular/forms'
+import { CoRequestManagerService } from './co-request-manager.service'
+import { CoRequestFormComponent } from 'co-request-form/co-request-form'
+import { BehaviorSubject } from 'rxjs/Rx'
 
 @Component({
   selector: 'co-request-manager',
-  directives: [
-    CoRequestFormComponent,
-    ManageRequestsComponent,
-    REACTIVE_FORM_DIRECTIVES
-  ],
-  providers: [CoRequestManagerService],
   template: `
     <div class="row">
       <div class="col-xs-6">
