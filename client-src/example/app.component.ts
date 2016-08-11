@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core'
-import {CoRequestManagerComponent} from '../request-manager/co-request-manager.component'
+import {CoRequestManagerComponent} from '../../co-request-manager'
 
 @Component({
   selector: 'app',

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var co_request_manager_component_1 = require('../request-manager/co-request-manager.component');
+var co_request_manager_1 = require('../../co-request-manager');
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -18,8 +18,8 @@ var AppComponent = (function () {
         console.log(params);
     };
     __decorate([
-        core_1.ViewChild(co_request_manager_component_1.CoRequestManagerComponent), 
-        __metadata('design:type', co_request_manager_component_1.CoRequestManagerComponent)
+        core_1.ViewChild(co_request_manager_1.CoRequestManagerComponent), 
+        __metadata('design:type', co_request_manager_1.CoRequestManagerComponent)
     ], AppComponent.prototype, "coRequestManagerComponent", void 0);
     AppComponent = __decorate([
         core_1.Component({
