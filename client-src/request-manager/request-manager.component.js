@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var request_manager_service_1 = require('./request-manager.service');
-var request_form_1 = require('@calle/ng2-request-form/request-form');
+var ng2_request_form_1 = require('@calle/ng2-request-form');
 var RequestManagerComponent = (function () {
     function RequestManagerComponent(requestManagerService, formBuilder) {
         this.requestManagerService = requestManagerService;
@@ -72,8 +72,8 @@ var RequestManagerComponent = (function () {
         __metadata('design:type', Object)
     ], RequestManagerComponent.prototype, "listHeight", void 0);
     __decorate([
-        core_1.ViewChild(request_form_1.RequestFormComponent), 
-        __metadata('design:type', request_form_1.RequestFormComponent)
+        core_1.ViewChild(ng2_request_form_1.RequestFormComponent), 
+        __metadata('design:type', ng2_request_form_1.RequestFormComponent)
     ], RequestManagerComponent.prototype, "requestFormComponent", void 0);
     RequestManagerComponent = __decorate([
         core_1.Component({

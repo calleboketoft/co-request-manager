@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
-var request_form_1 = require('@calle/ng2-request-form/request-form');
-var ng2_table_1 = require('@calle/ng2-table/ng2-table');
+var ng2_request_form_1 = require('@calle/ng2-request-form');
+var ng2_table_1 = require('@calle/ng2-table');
 var manage_saved_requests_component_1 = require('./manage-saved-requests.component');
 var request_manager_component_1 = require('./request-manager.component');
 var request_manager_service_1 = require('./request-manager.service');
@@ -28,7 +28,7 @@ var RequestManagerModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.ReactiveFormsModule,
-                request_form_1.RequestFormModule,
+                ng2_request_form_1.RequestFormModule,
                 ng2_table_1.Ng2TableModule
             ],
             exports: [

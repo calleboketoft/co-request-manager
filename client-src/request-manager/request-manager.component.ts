@@ -2,7 +2,7 @@ import { Component, ViewChild, Input} from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { RequestManagerService } from './request-manager.service'
 import { BehaviorSubject } from 'rxjs/Rx'
-import { RequestFormComponent } from '@calle/ng2-request-form/request-form'
+import { RequestFormComponent } from '@calle/ng2-request-form'
 
 @Component({
   selector: 'request-manager',
