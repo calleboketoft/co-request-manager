@@ -1,21 +1,34 @@
-## co-request-manager
+## ng2-request-manager
 
 Angular 2 REST Request manager
 
 #### Install
 
-- `npm install --save co-request-form co-browser-storage co-list-view-table co-request-manager`
+- `npm install --save @calle/{ng2-request-form,ng2-browser-storage,ng2-table,ng2-request-manager}`
 - Also need `@ngrx/store` to work
-- Set up `co-browser-storage` first and add a browser storage param for this app
-- `main.ts`:
+- Set up `ng2-browser-storage` first and add a browser storage param for this app
+- Use in your `app.module.ts`:
 
 ```javascript
-import {provideCoRequestManager} from '../request-manager/co-request-manager.provider'
-
-bootstrap(MyApp, [
-  // NOTE it's the key without the co-browser-storage namespace here
-  provideCoRequestManager('requestManagerConfigBrowserStorageKey')
-])
+import {
+  provideRequestManager,
+  RequestManagerModule
+} from '@calle/ng2-request-manager'
+...
+@NgModule({
+  ...
+  imports: [
+    RequestManagerModule
+    ...
+  ]
+  ...
+  providers: [
+    // NOTE it's the key without the co-browser-storage namespace here
+    provideRequestManager('requestManagerConfig')
+    ...
+  ]
+  ...
+})
 ```
 
 - `co-browser-storage.config`:
@@ -39,25 +52,22 @@ Note that listHeight is optional
 ```javascript
 import {Component, ViewChild} from '@angular/core'
 
-import {CoRequestManagerComponent} from 'co-request-manager/co-request-manager'
-
 @Component({
   selector: 'app',
-  directives: [CoRequestManagerComponent],
   template: `
-    <co-request-manager
+    <request-manager
       [listHeight]="'300px'">
       <button type="button" class="btn btn-success btn-block" (click)="makeRequest()">
         Make request
       </button>
-    </co-request-manager>
+    </request-manager>
   `
 })
 export class AppComponent {
-  @ViewChild(CoRequestManagerComponent) coRequestManagerComponent: CoRequestManagerComponent
+  @ViewChild(RequestManagerComponent) requestManagerComponent: RequestManagerComponent
 
   public makeRequest () {
-    let params = this.coRequestManagerComponent.coRequestFormComponent.request()
+    let params = this.requestManagerComponent.requestFormComponent.request()
     console.log(params)
   }
 }
