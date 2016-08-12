@@ -9,7 +9,7 @@ import { RequestManagerConfig } from './request-manager.config'
       <ng2-table
         [tableConfig]="tableConfig"
         [tableData]="requestList$ | async"
-        (selected)="selectedRequest.emit($event)"
+        (selectedItem)="selectedRequest.emit($event)"
         (buttonClicked)="removeItem($event)">
       </ng2-table>
     </div>

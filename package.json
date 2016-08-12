@@ -1,6 +1,6 @@
 {
   "name": "@calle/ng2-request-manager",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Angular 2 - Request manager component",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,11 @@
     "typescript": "tsc",
     "watch": "tsc -w",
     "typings": "typings"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run build"
+    }
   },
   "repository": {
     "type": "git",
@@ -37,14 +42,15 @@
     "@angular/forms": "0.3.0",
     "@angular/platform-browser": "2.0.0-rc.5",
     "@angular/platform-browser-dynamic": "2.0.0-rc.5",
+    "@calle/ng2-browser-storage": "2.0.1",
+    "@calle/ng2-request-form": "2.1.5",
+    "@calle/ng2-table": "1.0.2",
     "@ngrx/core": "1.0.1",
     "@ngrx/store": "2.0.1",
     "bootstrap": "git+https://git@github.com/twbs/bootstrap.git#v4-dev",
-    "@calle/ng2-browser-storage": "^2.0.1",
-    "@calle/ng2-table": "^1.0.1",
-    "@calle/ng2-request-form": "^2.1.5",
     "es6-shim": "0.35.1",
     "express": "4.14.0",
+    "ghooks": "1.3.2",
     "reflect-metadata": "0.1.8",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.36",
