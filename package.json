@@ -1,6 +1,6 @@
 {
   "name": "@calle/ng2-request-manager",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Angular 2 - Request manager component",
   "main": "index.js",
   "scripts": {
@@ -33,7 +33,7 @@
     "@ngrx/store": "^2.1.2",
     "@calle/ng2-browser-storage": "^2.0.2",
     "@calle/ng2-table": "^1.0.3",
-    "@calle/ng2-request-form": "^2.1.8"
+    "@calle/ng2-request-form": "^2.1.9"
   },
   "devDependencies": {
     "@angular/common": "2.0.0-rc.6",
@@ -43,7 +43,7 @@
     "@angular/platform-browser": "2.0.0-rc.6",
     "@angular/platform-browser-dynamic": "2.0.0-rc.6",
     "@calle/ng2-browser-storage": "2.0.2",
-    "@calle/ng2-request-form": "2.1.8",
+    "@calle/ng2-request-form": "2.1.9",
     "@calle/ng2-table": "1.0.3",
     "@ngrx/core": "1.0.2",
     "@ngrx/store": "2.1.2",
