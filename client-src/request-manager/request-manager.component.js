@@ -48,8 +48,8 @@ var RequestManagerComponent = (function () {
             name: newRequestNameControl.value,
             tags: [newRequestGroupControl.value]
         }));
-        newRequestGroupControl.updateValue('');
-        newRequestNameControl.updateValue('');
+        newRequestGroupControl.setValue('');
+        newRequestNameControl.setValue('');
     };
     __decorate([
         core_1.Input(), 

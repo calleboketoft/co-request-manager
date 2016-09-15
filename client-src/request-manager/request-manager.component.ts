@@ -119,7 +119,7 @@ export class RequestManagerComponent {
       tags: [newRequestGroupControl.value]
     }))
 
-    newRequestGroupControl.updateValue('')
-    newRequestNameControl.updateValue('')
+    newRequestGroupControl.setValue('')
+    newRequestNameControl.setValue('')
   }
 }
