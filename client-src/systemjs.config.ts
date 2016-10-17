@@ -13,7 +13,8 @@ System.config({
     '@angular/platform-browser': 'node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
     '@angular/platform-browser-dynamic': 'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
     '@angular/http': 'node_modules/@angular/http/bundles/http.umd.js',
-    '@ngrx': 'node_modules/@ngrx',
+    '@ngrx/core': 'node_modules/@ngrx/core/bundles/core.umd.js',
+    '@ngrx/store': 'node_modules/@ngrx/store/bundles/store.umd.js',
     'rxjs': 'node_modules/rxjs'
   },
   packages: {
@@ -30,7 +31,7 @@ System.config({
     '@angular/http': {defaultExtension: 'js'},
     '@angular/platform-browser': {defaultExtension: 'js'},
     '@angular/platform-browser-dynamic': {defaultExtension: 'js'},
-    '@ngrx/store': {defaultExtension: 'js', main: 'index.js'},
-    '@ngrx/core': {defaultExtension: 'js', main: 'index.js'}
+    '@ngrx/store': {defaultExtension: 'js'},
+    '@ngrx/core': {defaultExtension: 'js'}
   }
 })
