@@ -1,14 +1,12 @@
 {
   "name": "@calle/ng2-request-manager",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Angular 2 - Request manager component",
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "build": "npm run typescript",
-    "typescript": "tsc",
-    "watch": "tsc -w",
-    "typings": "typings"
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "config": {
     "ghooks": {
@@ -29,33 +27,33 @@
   },
   "homepage": "https://github.com/calleboketoft/ng2-request-manager#readme",
   "peerDependencies": {
-    "@angular/core": "^2.1.0",
+    "@angular/core": "^2.2.1",
     "@ngrx/store": "^2.2.1",
-    "@calle/ng2-browser-storage": "^2.0.4",
-    "@calle/ng2-table": "^1.0.5",
-    "@calle/ng2-request-form": "^2.1.11"
+    "@calle/ng2-browser-storage": "^2.0.5",
+    "@calle/ng2-table": "^1.1.3",
+    "@calle/ng2-request-form": "^2.1.12"
   },
   "devDependencies": {
-    "@angular/common": "2.1.0",
-    "@angular/compiler": "2.1.0",
-    "@angular/core": "2.1.0",
-    "@angular/forms": "2.1.0",
-    "@angular/platform-browser": "2.1.0",
-    "@angular/platform-browser-dynamic": "2.1.0",
-    "@calle/ng2-browser-storage": "2.0.4",
-    "@calle/ng2-request-form": "2.1.11",
-    "@calle/ng2-table": "1.0.5",
+    "@angular/common": "2.2.1",
+    "@angular/compiler": "2.2.1",
+    "@angular/core": "2.2.1",
+    "@angular/forms": "2.2.1",
+    "@angular/platform-browser": "2.2.1",
+    "@angular/platform-browser-dynamic": "2.2.1",
+    "@calle/ng2-browser-storage": "2.0.5",
+    "@calle/ng2-request-form": "2.1.12",
+    "@calle/ng2-table": "1.1.3",
     "@ngrx/core": "1.2.0",
     "@ngrx/store": "2.2.1",
-    "bootstrap": "4.0.0-alpha.3",
+    "@types/core-js": "0.9.34",
+    "bootstrap": "4.0.0-alpha.5",
     "es6-shim": "0.35.1",
     "express": "4.14.0",
     "ghooks": "1.3.2",
     "reflect-metadata": "0.1.8",
     "rxjs": "5.0.0-beta.12",
-    "systemjs": "0.19.39",
-    "typescript": "2.0.3",
-    "typings": "1.4.0",
-    "zone.js": "0.6.25"
+    "systemjs": "0.19.41",
+    "typescript": "2.0.10",
+    "zone.js": "0.6.26"
   }
 }
