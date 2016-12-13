@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var ng2_browser_storage_1 = require('@calle/ng2-browser-storage');
-var request_manager_config_1 = require('./request-manager.config');
+var core_1 = require("@angular/core");
+var ng2_browser_storage_1 = require("@calle/ng2-browser-storage");
+var request_manager_config_1 = require("./request-manager.config");
 var ManageSavedRequestsComponent = (function () {
     function ManageSavedRequestsComponent(browserStorageModel, requestManagerConfig) {
         this.browserStorageModel = browserStorageModel;
@@ -18,29 +18,31 @@ var ManageSavedRequestsComponent = (function () {
         this.listHeight = 'auto';
         this.selectedRequest = new core_1.EventEmitter();
         this.tableConfig = {
+            tableNgClass: 'table table-striped table-hover',
+            rowNgStyle: { 'cursor': 'pointer' },
             columnDefs: [
                 {
                     field: 'name',
-                    displayName: 'Name',
+                    headerText: 'Name',
                     search: true
                 },
                 {
                     field: 'method',
-                    displayName: 'Method',
+                    headerText: 'Method',
                     search: true
                 },
                 {
                     field: 'group',
-                    displayName: 'Group',
+                    headerText: 'Group',
                     search: true,
                     sortDefault: true
                 },
                 {
-                    displayName: '',
-                    type: 'button',
-                    config: {
-                        buttonName: 'remove',
-                        buttonClass: 'btn btn-sm btn-outline-danger'
+                    headerText: '',
+                    cellItem: {
+                        elementType: 'button',
+                        staticContent: 'remove',
+                        cellItemNgClass: 'btn btn-sm btn-danger'
                     }
                 }
             ]
@@ -83,22 +85,23 @@ var ManageSavedRequestsComponent = (function () {
             });
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], ManageSavedRequestsComponent.prototype, "listHeight", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], ManageSavedRequestsComponent.prototype, "selectedRequest", void 0);
-    ManageSavedRequestsComponent = __decorate([
-        core_1.Component({
-            selector: 'manage-requests',
-            template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selectedItem)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
-        }), 
-        __metadata('design:paramtypes', [ng2_browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
-    ], ManageSavedRequestsComponent);
     return ManageSavedRequestsComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], ManageSavedRequestsComponent.prototype, "listHeight", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], ManageSavedRequestsComponent.prototype, "selectedRequest", void 0);
+ManageSavedRequestsComponent = __decorate([
+    core_1.Component({
+        selector: 'manage-requests',
+        template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selectedItem)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
+    }),
+    __metadata("design:paramtypes", [ng2_browser_storage_1.BrowserStorageModel,
+        request_manager_config_1.RequestManagerConfig])
+], ManageSavedRequestsComponent);
 exports.ManageSavedRequestsComponent = ManageSavedRequestsComponent;
 //# sourceMappingURL=manage-saved-requests.component.js.map

@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var ng2_browser_storage_1 = require('@calle/ng2-browser-storage');
-var request_manager_config_1 = require('./request-manager.config');
-require('rxjs/add/operator/take');
+var core_1 = require("@angular/core");
+var ng2_browser_storage_1 = require("@calle/ng2-browser-storage");
+var request_manager_config_1 = require("./request-manager.config");
+require("rxjs/add/operator/take");
 var RequestManagerService = (function () {
     function RequestManagerService(browserStorageModel, requestManagerConfig) {
         this.browserStorageModel = browserStorageModel;
@@ -44,7 +44,7 @@ var RequestManagerService = (function () {
     RequestManagerService.prototype.generateUUID = function () {
         var d = new Date().getTime();
         if (window.performance && typeof window.performance.now === 'function') {
-            d += performance.now(); //use high-precision timer if available
+            d += performance.now(); // use high-precision timer if available
         }
         var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = (d + Math.random() * 16) % 16 | 0;
@@ -53,11 +53,12 @@ var RequestManagerService = (function () {
         });
         return uuid;
     };
-    RequestManagerService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [ng2_browser_storage_1.BrowserStorageModel, request_manager_config_1.RequestManagerConfig])
-    ], RequestManagerService);
     return RequestManagerService;
 }());
+RequestManagerService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [ng2_browser_storage_1.BrowserStorageModel,
+        request_manager_config_1.RequestManagerConfig])
+], RequestManagerService);
 exports.RequestManagerService = RequestManagerService;
 //# sourceMappingURL=request-manager.service.js.map

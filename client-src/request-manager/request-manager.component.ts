@@ -52,7 +52,7 @@ import { RequestFormComponent } from '@calle/ng2-request-form'
               </small>
             </div>
             <div class="col-xs-4" style="text-align: right;">
-              <button type="button" class="btn btn-outline-success"
+              <button type="button" class="btn btn-success"
                 style="width: 110px;"
                 (click)="saveNewRequest()">
                 + Save
@@ -74,15 +74,15 @@ import { RequestFormComponent } from '@calle/ng2-request-form'
 })
 export class RequestManagerComponent {
   // emit new values when updated
-  @Input() url = '';
-  @Input() method = 'GET';
-  @Input() body = '{}';
-  @Input() headers = {};
-  @Input() listHeight;
-  @ViewChild(RequestFormComponent) requestFormComponent: RequestFormComponent;
+  @Input() url = ''
+  @Input() method = 'GET'
+  @Input() body = '{}'
+  @Input() headers = {}
+  @Input() listHeight
+  @ViewChild(RequestFormComponent) requestFormComponent: RequestFormComponent
 
-  public saveRequestForm;
-  public fc;
+  public saveRequestForm
+  public fc
 
   constructor (
     private requestManagerService: RequestManagerService,

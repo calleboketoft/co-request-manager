@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { BrowserStorageModel } from '@calle/ng2-browser-storage'
 import { RequestManagerConfig } from './request-manager.config'
+import { TableConfigModel } from '@calle/ng2-table'
 
 @Component({
   selector: 'manage-requests',
@@ -18,35 +19,33 @@ import { RequestManagerConfig } from './request-manager.config'
 export class ManageSavedRequestsComponent {
   @Input() listHeight = 'auto';
   @Output() selectedRequest = new EventEmitter();
-  constructor (
-    private browserStorageModel: BrowserStorageModel,
-    private requestManagerConfig: RequestManagerConfig
-  ) {}
 
-  public tableConfig = {
+  public tableConfig: TableConfigModel = {
+    tableNgClass: 'table table-striped table-hover',
+    rowNgStyle: {'cursor': 'pointer'},
     columnDefs: [
       {
         field: 'name',
-        displayName: 'Name',
+        headerText: 'Name',
         search: true
       },
       {
         field: 'method',
-        displayName: 'Method',
+        headerText: 'Method',
         search: true
       },
       {
         field: 'group',
-        displayName: 'Group',
+        headerText: 'Group',
         search: true,
         sortDefault: true
       },
       {
-        displayName: '',
-        type: 'button',
-        config: {
-          buttonName: 'remove',
-          buttonClass: 'btn btn-sm btn-outline-danger'
+        headerText: '',
+        cellItem: {
+          elementType: 'button',
+          staticContent: 'remove',
+          cellItemNgClass: 'btn btn-sm btn-danger'
         }
       }
     ]
@@ -64,6 +63,11 @@ export class ManageSavedRequestsComponent {
       })
       return configWithGroup
     })
+
+  constructor (
+    private browserStorageModel: BrowserStorageModel,
+    private requestManagerConfig: RequestManagerConfig
+  ) {}
 
   public removeItem ({colSpec, row}) {
     if (confirm('Are you sure you want to remove request?')) {
