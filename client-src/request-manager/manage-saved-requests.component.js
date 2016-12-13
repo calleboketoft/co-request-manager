@@ -98,7 +98,7 @@ __decorate([
 ManageSavedRequestsComponent = __decorate([
     core_1.Component({
         selector: 'manage-requests',
-        template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (selectedItem)=\"selectedRequest.emit($event)\"\n        (buttonClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
+        template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (rowClicked)=\"selectedRequest.emit($event)\"\n        (cellItemClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
     }),
     __metadata("design:paramtypes", [ng2_browser_storage_1.BrowserStorageModel,
         request_manager_config_1.RequestManagerConfig])

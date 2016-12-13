@@ -10,8 +10,8 @@ import { TableConfigModel } from '@calle/ng2-table'
       <ng2-table
         [tableConfig]="tableConfig"
         [tableData]="requestList$ | async"
-        (selectedItem)="selectedRequest.emit($event)"
-        (buttonClicked)="removeItem($event)">
+        (rowClicked)="selectedRequest.emit($event)"
+        (cellItemClicked)="removeItem($event)">
       </ng2-table>
     </div>
   `
