@@ -10,15 +10,15 @@ import { TableConfigModel } from '@calle/ng2-table'
       <ng2-table
         [tableConfig]="tableConfig"
         [tableData]="requestList$ | async"
-        (rowClicked)="selectedRequest.emit($event)"
+        (rowClicked)="selectedRequest.emit($event.rowData)"
         (cellItemClicked)="removeItem($event)">
       </ng2-table>
     </div>
   `
 })
 export class ManageSavedRequestsComponent {
-  @Input() listHeight = 'auto';
-  @Output() selectedRequest = new EventEmitter();
+  @Input() listHeight = 'auto'
+  @Output() selectedRequest = new EventEmitter()
 
   public tableConfig: TableConfigModel = {
     tableNgClass: 'table table-striped table-hover',
@@ -27,18 +27,18 @@ export class ManageSavedRequestsComponent {
       {
         field: 'name',
         headerText: 'Name',
-        search: true
+        filterEnabled: true
       },
       {
         field: 'method',
         headerText: 'Method',
-        search: true
+        filterEnabled: true
       },
       {
         field: 'group',
         headerText: 'Group',
-        search: true,
-        sortDefault: true
+        filterEnabled: true,
+        sortDefault: 'asc'
       },
       {
         headerText: '',
@@ -69,7 +69,7 @@ export class ManageSavedRequestsComponent {
     private requestManagerConfig: RequestManagerConfig
   ) {}
 
-  public removeItem ({colSpec, row}) {
+  public removeItem ({rowData}) {
     if (confirm('Are you sure you want to remove request?')) {
       this.browserStorageModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
         .take(1)
@@ -78,7 +78,7 @@ export class ManageSavedRequestsComponent {
           let configFromStorage = JSON.parse(config.value)
           // Remove request from requests array
           let requestsItemRemoved = configFromStorage.requests.filter(savedRequest => {
-            return savedRequest.id !== row.id
+            return savedRequest.id !== rowData.id
           })
           // create updated config object with request removed
           let updatedConfig = Object.assign({}, configFromStorage, {

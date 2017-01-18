@@ -27,8 +27,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
         template: "\n    <request-manager>\n      <button type=\"button\" class=\"btn btn-success btn-block\" (click)=\"makeRequest()\">\n        Make request\n      </button>\n    </request-manager>\n  "
-    }),
-    __metadata("design:paramtypes", [])
+    })
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

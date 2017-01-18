@@ -24,18 +24,18 @@ var ManageSavedRequestsComponent = (function () {
                 {
                     field: 'name',
                     headerText: 'Name',
-                    search: true
+                    filterEnabled: true
                 },
                 {
                     field: 'method',
                     headerText: 'Method',
-                    search: true
+                    filterEnabled: true
                 },
                 {
                     field: 'group',
                     headerText: 'Group',
-                    search: true,
-                    sortDefault: true
+                    filterEnabled: true,
+                    sortDefault: 'asc'
                 },
                 {
                     headerText: '',
@@ -62,7 +62,7 @@ var ManageSavedRequestsComponent = (function () {
     }
     ManageSavedRequestsComponent.prototype.removeItem = function (_a) {
         var _this = this;
-        var colSpec = _a.colSpec, row = _a.row;
+        var rowData = _a.rowData;
         if (confirm('Are you sure you want to remove request?')) {
             this.browserStorageModel.getItemByKey(this.requestManagerConfig.browserStorageKey)
                 .take(1)
@@ -71,7 +71,7 @@ var ManageSavedRequestsComponent = (function () {
                 var configFromStorage = JSON.parse(config.value);
                 // Remove request from requests array
                 var requestsItemRemoved = configFromStorage.requests.filter(function (savedRequest) {
-                    return savedRequest.id !== row.id;
+                    return savedRequest.id !== rowData.id;
                 });
                 // create updated config object with request removed
                 var updatedConfig = Object.assign({}, configFromStorage, {
@@ -98,7 +98,7 @@ __decorate([
 ManageSavedRequestsComponent = __decorate([
     core_1.Component({
         selector: 'manage-requests',
-        template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (rowClicked)=\"selectedRequest.emit($event)\"\n        (cellItemClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
+        template: "\n    <div [style.height]=\"listHeight\">\n      <ng2-table\n        [tableConfig]=\"tableConfig\"\n        [tableData]=\"requestList$ | async\"\n        (rowClicked)=\"selectedRequest.emit($event.rowData)\"\n        (cellItemClicked)=\"removeItem($event)\">\n      </ng2-table>\n    </div>\n  "
     }),
     __metadata("design:paramtypes", [ng2_browser_storage_1.BrowserStorageModel,
         request_manager_config_1.RequestManagerConfig])
