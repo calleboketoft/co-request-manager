@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.NAMESPACE = 'co-request-manager';
 exports.DEBUG_MODE = 'debugMode';
 exports.REQUEST_MANAGER_CONFIG = 'requestManagerConfig';

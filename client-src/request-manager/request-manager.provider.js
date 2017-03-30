@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var request_manager_service_1 = require("./request-manager.service");
 var request_manager_config_1 = require("./request-manager.config");
 var ng2_browser_storage_1 = require("@calle/ng2-browser-storage");
